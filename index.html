@@ -7,326 +7,493 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{--r:#dc2626;--g:#d4af37;--bg:#060610;--card:#0c0c1a;--text:#f0ebe3;--muted:#8a8a8e;--subtle:#4a4a4a;--border:rgba(255,255,255,.06)}
+:root{--r:#dc2626;--g:#d4af37;--bg:#060610;--card:#0c0c1a;--text:#f0ebe3;--muted:#7a7a7e;--border:rgba(255,255,255,.08)}
 html{scroll-behavior:smooth}
 body{font-family:'Inter',sans-serif;color:var(--text);background:var(--bg);line-height:1.7;overflow-x:hidden}
-a{text-decoration:none;color:inherit}
-img{max-width:100%}
+
+/* ══ 3D SCENE ══ */
+#canvas-container{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
+canvas{position:absolute;top:0;left:0;width:100%;height:100%}
+.glow{position:absolute;width:400px;height:400px;border-radius:50%;filter:blur(150px);opacity:.15;pointer-events:none}
+.glow-r{background:var(--r);top:20%;left:10%;animation:floatGlow 15s ease-in-out infinite}
+.glow-g{background:var(--g);bottom:20%;right:10%;animation:floatGlow 20s ease-in-out infinite reverse}
+@keyframes floatGlow{0%,100%{transform:translate(0,0)}50%{transform:translate(20px,20px)}}
 
 /* ══ NAV ══ */
-nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem;background:rgba(6,6,16,.95);border-bottom:var(--border);backdrop-filter:blur(20px)}
-.logo{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.9rem;color:var(--text);letter-spacing:-.02em}
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;justify-content:space-between;align-items:center;padding:1.25rem 2rem;background:rgba(6,6,16,.9);border-bottom:var(--border);backdrop-filter:blur(30px);transition:all .3s}
+nav.scrolled{background:rgba(6,6,16,.98);padding:.75rem 2rem;box-shadow:0 10px 40px rgba(0,0,0,.3)}
+.logo{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1rem;color:var(--text);letter-spacing:-.02em}
 .logo span{color:var(--r)}
-.nl{display:flex;gap:2rem}
-.nl a{color:var(--muted);font-size:.75rem;font-weight:500;transition:color .2s}
+.nl{display:flex;gap:2.5rem}
+.nl a{color:var(--muted);font-size:.8rem;font-weight:500;position:relative;transition:color .3s}
+.nl a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--g);transition:width .3s}
 .nl a:hover{color:var(--text)}
-.nc{display:inline-flex;align-items:center;gap:.5rem;padding:.5rem 1rem;background:var(--r);color:#fff;font-size:.75rem;font-weight:600;border-radius:6px;transition:opacity .2s}
-.nc:hover{opacity:.9}
+.nl a:hover::after{width:100%}
+.nc{display:inline-flex;align-items:center;gap:.5rem;padding:.6rem 1.25rem;background:var(--r);color:#fff;font-size:.8rem;font-weight:600;border-radius:8px;transition:all .3s;box-shadow:0 4px 20px rgba(220,38,38,.3)}
+.nc:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(220,38,38,.4)}
 
 /* ══ HERO ══ */
-.hero{min-height:100vh;display:flex;align-items:center;padding:8rem 2rem 4rem;max-width:1200px;margin:0 auto}
-.hi{max-width:720px}
-.emlem{width:60px;height:60px;margin-bottom:1.5rem}
-.bdg{display:inline-flex;align-items:center;gap:.5rem;padding:.3rem .75rem;background:rgba(220,38,38,.1);border:1px solid rgba(220,38,38,.2);font-size:.7rem;color:var(--g);margin-bottom:1.5rem;border-radius:20px}
-.bdg .dt{width:6px;height:6px;border-radius:50%;background:var(--r);animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
-.h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(2.5rem,6vw,4.5rem);font-weight:700;color:var(--text);line-height:1.1;margin-bottom:1.5rem;letter-spacing:-.03em}
-.h1 em{color:var(--r);font-style:normal}
-.hp{font-size:1.1rem;color:var(--muted);line-height:1.8;margin-bottom:2rem;max-width:520px}
+.hero{min-height:100vh;display:flex;align-items:center;padding:8rem 2rem 4rem;max-width:1200px;margin:0 auto;position:relative;z-index:1}
+.hi{max-width:800px;animation:fadeInUp 1s ease-out}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+.emlem{width:80px;height:80px;margin-bottom:2rem;transition:transform .5s}
+.emlem:hover{transform:rotate(360deg)}
+.bdg{display:inline-flex;align-items:center;gap:.75rem;padding:.4rem 1rem;background:rgba(220,38,38,.1);border:1px solid rgba(220,38,38,.3);font-size:.75rem;color:var(--g);margin-bottom:2rem;border-radius:30px;backdrop-filter:blur(10px)}
+.bdg .dt{width:8px;height:8px;border-radius:50%;background:var(--r);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
+.h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(3rem,7vw,5.5rem);font-weight:700;color:var(--text);line-height:1.05;margin-bottom:1.5rem;letter-spacing:-.03em}
+.h1 em{color:var(--r);font-style:normal;position:relative}
+.h1 em::after{content:'';position:absolute;bottom:5px;left:0;width:100%;height:3px;background:linear-gradient(90deg,var(--r),var(--g));border-radius:2px}
+.hp{font-size:1.2rem;color:var(--muted);line-height:1.8;margin-bottom:2.5rem;max-width:560px}
 .hp b{color:var(--text)}
 .acts{display:flex;gap:1rem;flex-wrap:wrap}
-.btn{display:inline-flex;padding:.75rem 1.5rem;font-size:.8rem;font-weight:600;border-radius:8px;cursor:pointer;border:none;transition:all .3s}
-.b1{background:var(--r);color:#fff}
-.b1:hover{opacity:.9;transform:translateY(-2px)}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 1.75rem;font-size:.85rem;font-weight:600;border-radius:10px;cursor:pointer;border:none;transition:all .4s cubic-bezier(.25,.8,.25,1)}
+.b1{background:var(--r);color:#fff;box-shadow:0 4px 20px rgba(220,38,38,.3)}
+.b1:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(220,38,38,.4)}
 .b2{border:1px solid var(--border);color:var(--text);background:transparent}
-.b2:hover{border-color:var(--g);color:var(--g)}
+.b2:hover{border-color:var(--g);color:var(--g);background:rgba(212,175,55,.05)}
 
-/* ══ SECTION ══ */
-section{padding:5rem 2rem;max-width:1200px;margin:0 auto}
-.sl{font-size:.65rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--g);margin-bottom:.75rem}
-.st{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.75rem,4vw,2.5rem);font-weight:700;color:var(--text);line-height:1.2;margin-bottom:1rem}
+/* ══ SECTION BASE ══ */
+section{padding:6rem 2rem;max-width:1200px;margin:0 auto;position:relative;z-index:1}
+.sl{font-size:.7rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--g);margin-bottom:1rem;opacity:0;transform:translateY(20px);transition:all .6s ease-out}
+.st{font-family:'Space Grotesk',sans-serif;font-size:clamp(2rem,4.5vw,3rem);font-weight:700;color:var(--text);line-height:1.2;margin-bottom:1.5rem;opacity:0;transform:translateY(20px);transition:all .6s ease-out .1s}
+.sl.reveal,.st.reveal{opacity:1;transform:translateY(0)}
 
 /* ══ PROOF ══ */
 .proof{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin:2rem 0}
-.pd{background:var(--card);border:1px solid var(--border);padding:1.5rem;border-radius:12px;text-align:center}
-.pd .cl{font-size:.65rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:.5rem}
-.pd .cv{font-family:'Space Grotesk',sans-serif;font-size:2rem;font-weight:700;color:var(--g)}
-.pd.cr .cv{color:var(--r)}
+.pd{background:linear-gradient(135deg,var(--card),rgba(12,12,26,.5));border:1px solid var(--border);padding:2rem;border-radius:20px;text-align:center;position:relative;overflow:hidden;opacity:0;transform:translateY(30px);transition:all .4s}
+.pd::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--g),transparent);opacity:0;transition:opacity .3s}
+.pd:hover{transform:translateY(-8px);border-color:rgba(212,175,55,.3)}
+.pd:hover::before{opacity:1}
+.pd:nth-child(3)::before{background:linear-gradient(90deg,transparent,var(--r),transparent)}
+.pd .cl{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.75rem}
+.pd .cv{font-family:'Space Grotesk',sans-serif;font-size:2.5rem;font-weight:700;color:var(--g)}
+.pd:nth-child(3) .cv{color:var(--r)}
+.pd.reveal{opacity:1;transform:translateY(0)}
 
 /* ══ SERVICES ══ */
-.services{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
-.sv{background:var(--card);border:1px solid var(--border);padding:2rem;border-radius:16px;transition:all .3s}
-.sv:hover{border-color:rgba(220,38,38,.3);transform:translateY(-4px)}
-.sv .si{font-size:2rem;margin-bottom:1rem}
-.sv .sn{font-family:'Space Grotesk',sans-serif;font-size:1.1rem;font-weight:600;color:var(--text);margin-bottom:.75rem}
-.sv .st{font-size:.85rem;color:var(--muted);line-height:1.6}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:3rem}
+.sv{background:linear-gradient(135deg,var(--card),rgba(12,12,26,.3));border:1px solid var(--border);padding:2.5rem;border-radius:24px;position:relative;overflow:hidden;opacity:0;transform:translateY(40px);transition:all .4s}
+.sv::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,rgba(220,38,38,.05),transparent);opacity:0;transition:opacity .4s}
+.sv:hover{transform:translateY(-10px) scale(1.02);border-color:rgba(220,38,38,.2);box-shadow:0 20px 60px rgba(0,0,0,.4)}
+.sv:hover::before{opacity:1}
+.sv.reveal{opacity:1;transform:translateY(0)}
+.sv .si{font-size:2.5rem;margin-bottom:1.5rem;display:block}
+.sv .sn{font-family:'Space Grotesk',sans-serif;font-size:1.3rem;font-weight:600;color:var(--text);margin-bottom:1rem;position:relative}
+.sv .st{font-size:.9rem;color:var(--muted);line-height:1.7;margin-bottom:1.5rem}
+.sv .deliverables{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1rem}
+.sv .del{font-size:.7rem;padding:.3rem .75rem;background:rgba(255,255,255,.03);border:1px solid var(--border);color:var(--muted);border-radius:20px;transition:all .3s}
+.sv .del:hover{background:rgba(212,175,55,.1);border-color:rgba(212,175,55,.3);color:var(--g)}
 
 /* ══ PHILOSOPHY ══ */
-.philosophy{padding:4rem 2rem;background:var(--card);border-radius:24px;margin:4rem 0}
-.philosophy .st{margin-bottom:1.5rem}
+.philosophy{background:linear-gradient(135deg,var(--card),rgba(12,12,26,.5));border-radius:32px;padding:4rem;margin:4rem auto;border:1px solid var(--border)}
 .px{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem}
-.px .ln{font-size:.95rem;color:var(--muted);padding:.75rem 0;border-bottom:1px solid var(--border)}
+.px .ln{font-size:1rem;color:var(--muted);padding:1rem 0;border-bottom:1px solid var(--border);opacity:0;transform:translateX(-20px);transition:all .5s ease-out}
 .px .ln:last-child{border-bottom:none}
+.px .ln.reveal{opacity:1;transform:translateX(0)}
 .px .ln em{color:var(--r);font-style:normal}
+
+/* ══ COMPARISON ══ */
+.compare{background:linear-gradient(135deg,var(--card),rgba(12,12,26,.3));border-radius:24px;padding:3rem;margin:3rem 0;border:1px solid var(--border)}
+.compare table{width:100%;border-collapse:collapse}
+.compare th,.compare td{padding:1rem;text-align:left;border-bottom:1px solid var(--border);font-size:.85rem}
+.compare th{color:var(--muted);font-weight:500;text-transform:uppercase;letter-spacing:.08em;font-size:.7rem}
+.compare td:first-child{color:var(--text);font-weight:500}
+.compare .check{color:var(--g)}
+.compare .cross{color:var(--r)}
+.compare .partial{color:#f59e0b}
 
 /* ══ SYSTEM ══ */
 .system{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;margin-top:2rem}
-.sw{background:var(--card);border:1px solid var(--border);padding:1.75rem;border-radius:12px}
-.sw .tt{font-size:.6rem;font-weight:600;letter-spacing:.1em;color:var(--g);text-transform:uppercase;margin-bottom:.5rem}
+.sw{background:linear-gradient(135deg,var(--card),rgba(12,12,26,.3));border:1px solid var(--border);padding:2rem;border-radius:16px;opacity:0;transform:translateY(30px);transition:all .4s}
+.sw:hover{border-color:rgba(212,175,55,.2);transform:translateY(-5px)}
+.sw.reveal{opacity:1;transform:translateY(0)}
+.sw .tt{font-size:.65rem;font-weight:600;letter-spacing:.12em;color:var(--g);text-transform:uppercase;margin-bottom:.75rem}
 .sw .tt::before{content:'// ';color:var(--r)}
-.sw .ch{font-family:'Space Grotesk',sans-serif;font-size:1rem;font-weight:600;color:var(--text);margin-bottom:.5rem}
-.sw .ct{font-size:.85rem;color:var(--muted);line-height:1.6}
+.sw .ch{font-family:'Space Grotesk',sans-serif;font-size:1.1rem;font-weight:600;color:var(--text);margin-bottom:.75rem}
+.sw .ct{font-size:.9rem;color:var(--muted);line-height:1.7}
 
 /* ══ STACK ══ */
-.stack{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:2rem}
-.sk{background:var(--card);border:1px solid var(--border);padding:1.25rem;text-align:center;border-radius:12px;transition:all .2s}
-.sk:hover{border-color:var(--g)}
-.sk img{width:36px;height:36px;margin:0 auto .5rem;display:block}
-.sk .skn{font-family:'Space Grotesk',sans-serif;font-size:.75rem;font-weight:600;color:var(--text);margin-bottom:.25rem}
-.sk .skd{font-size:.65rem;color:var(--muted);line-height:1.4}
-.sk .skt{font-size:.55rem;letter-spacing:.08em;text-transform:uppercase;color:var(--r);margin-top:.5rem}
+.stack{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem;margin-top:2rem}
+.sk{background:linear-gradient(135deg,var(--card),rgba(12,12,26,.3));border:1px solid var(--border);padding:1.5rem;text-align:center;border-radius:16px;opacity:0;transform:scale(0.9);transition:all .4s}
+.sk:hover{border-color:var(--g);transform:translateY(-5px) scale(1.05)}
+.sk.reveal{opacity:1;transform:scale(1)}
+.sk .ico{font-size:1.75rem;margin-bottom:.75rem;display:block}
+.sk .skn{font-family:'Space Grotesk',sans-serif;font-size:.85rem;font-weight:600;color:var(--text);margin-bottom:.25rem}
+.sk .skd{font-size:.7rem;color:var(--muted);line-height:1.4}
+.sk .skt{font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;color:var(--r);margin-top:.75rem;font-weight:600}
 
 /* ══ CASES ══ */
-.cases{display:grid;gap:1.5rem}
-.cs{background:var(--card);border:1px solid rgba(220,38,38,.1);padding:2rem;border-radius:16px}
-.csh{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1rem;flex-wrap:wrap;gap:1rem}
-.ccl{font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
-.cms{display:flex;gap:2rem}
+.cases{display:grid;gap:2rem;margin-top:2rem}
+.cs{background:linear-gradient(135deg,var(--card),rgba(12,12,26,.5));border:1px solid rgba(220,38,38,.1);padding:2.5rem;border-radius:24px;opacity:0;transform:translateY(30px);transition:all .4s}
+.cs:hover{border-color:rgba(220,38,38,.3);transform:translateY(-5px)}
+.cs.reveal{opacity:1;transform:translateY(0)}
+.csh{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1.5rem;flex-wrap:wrap;gap:1rem}
+.ccl{font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.cms{display:flex;gap:2.5rem}
 .cm{text-align:center}
-.cmv{font-family:'Space Grotesk',sans-serif;font-size:1.25rem;font-weight:700;color:var(--r)}
-.cml{font-size:.6rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-top:.25rem}
-.cb{font-size:.9rem;color:var(--muted);line-height:1.7}
+.cmv{font-family:'Space Grotesk',sans-serif;font-size:1.5rem;font-weight:700;color:var(--r)}
+.cml{font-size:.65rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:.5rem}
+.cb{font-size:.95rem;color:var(--muted);line-height:1.8}
 .cb b{color:var(--text)}
 
 /* ══ PROCESS ══ */
-.process{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:2rem}
-.ps{position:relative;background:var(--card);border:1px solid var(--border);padding:1.75rem;border-radius:12px}
-.ps::before{content:'';position:absolute;top:1.75rem;right:-1rem;width:2rem;height:1px;background:var(--border)}
-.ps:last-child::before{display:none}
-.pk{font-size:.6rem;font-weight:600;letter-spacing:.1em;color:var(--g);text-transform:uppercase;margin-bottom:.5rem}
-.pn{font-family:'Space Grotesk',sans-serif;font-size:1rem;font-weight:600;color:var(--text);margin-bottom:.5rem}
-.pp{font-size:.8rem;color:var(--muted);line-height:1.5}
-.pd2{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1rem}
-.pd2 span{font-size:.6rem;padding:.2rem .5rem;background:rgba(212,175,55,.1);border:1px solid rgba(212,175,55,.2);color:var(--muted);border-radius:4px}
+.process{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;margin-top:3rem;position:relative}
+.process::before{content:'';position:absolute;top:40px;left:10%;right:10%;height:2px;background:linear-gradient(90deg,var(--r),var(--g),var(--r));opacity:.3}
+.ps{background:linear-gradient(135deg,var(--card),rgba(12,12,26,.3));border:1px solid var(--border);padding:2rem;border-radius:20px;text-align:center;position:relative;opacity:0;transform:translateY(30px);transition:all .4s}
+.ps.reveal{opacity:1;transform:translateY(0)}
+.pk{font-size:.7rem;font-weight:600;letter-spacing:.15em;color:var(--g);text-transform:uppercase;margin-bottom:.75rem}
+.pn{font-family:'Space Grotesk',sans-serif;font-size:1.1rem;font-weight:600;color:var(--text);margin-bottom:.75rem}
+.pp{font-size:.85rem;color:var(--muted);line-height:1.6;margin-bottom:1rem}
+.pd2{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:center}
+.pd2 span{font-size:.65rem;padding:.25rem .6rem;background:rgba(212,175,55,.1);border:1px solid rgba(212,175,55,.2);color:var(--g);border-radius:20px}
 
 /* ══ TESTIMONIALS ══ */
-.testimonials{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem}
-.tq{background:var(--card);border:1px solid var(--border);padding:1.75rem;border-radius:12px}
-.tq p{font-size:.9rem;color:var(--text);line-height:1.7;margin-bottom:1rem;font-style:italic}
-.tm{font-family:'Space Grotesk',sans-serif;font-size:.8rem;font-weight:600;color:var(--text)}
-.tr{font-size:.7rem;color:var(--muted)}
+.testimonials{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;margin-top:2rem}
+.tq{background:linear-gradient(135deg,var(--card),rgba(12,12,26,.3));border:1px solid var(--border);padding:2rem;border-radius:20px;opacity:0;transform:translateY(30px);transition:all .4s}
+.tq:hover{transform:translateY(-5px);border-color:rgba(212,175,55,.2)}
+.tq.reveal{opacity:1;transform:translateY(0)}
+.tq p{font-size:.95rem;color:var(--text);line-height:1.8;margin-bottom:1.25rem;font-style:italic}
+.tm{font-family:'Space Grotesk',sans-serif;font-size:.85rem;font-weight:600;color:var(--text)}
+.tr{font-size:.75rem;color:var(--muted);margin-top:.25rem}
 
 /* ══ GAME ══ */
-.game{max-width:800px;margin:0 auto;text-align:center;padding:4rem 2rem}
-.game .sl{text-align:center;margin-bottom:.5rem}
-.gi{font-size:.75rem;color:var(--muted);margin-bottom:1.5rem;display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
-.gi kbd{display:inline-block;padding:.2rem .5rem;background:var(--card);border:1px solid var(--r);color:var(--r);font-size:.7rem;border-radius:4px;font-family:'Space Grotesk',sans-serif}
-#gc{width:100%;border:1px solid rgba(220,38,38,.1);background:#040408;border-radius:12px;display:block}
-.gh2{display:flex;justify-content:space-between;padding:1rem 0;max-width:700px;margin:0 auto;font-size:.75rem;color:var(--muted)}
-.gsc{color:var(--r);font-family:'Space Grotesk',sans-serif;font-size:1rem;font-weight:700}
+.game{max-width:900px;margin:4rem auto;text-align:center;padding:4rem 2rem;position:relative;z-index:1}
+.gi{font-size:.8rem;color:var(--muted);margin-bottom:2rem;display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap}
+.gi kbd{display:inline-block;padding:.3rem .75rem;background:var(--card);border:1px solid var(--r);color:var(--r);font-size:.75rem;border-radius:6px;font-family:'Space Grotesk',sans-serif;font-weight:600}
+.gh2{display:flex;justify-content:space-between;padding:1.25rem 0;max-width:800px;margin:0 auto;font-size:.85rem;color:var(--muted)}
+.gsc{color:var(--r);font-family:'Space Grotesk',sans-serif;font-size:1.1rem;font-weight:700}
+#gc{width:100%;max-width:800px;border:1px solid rgba(220,38,38,.15);background:linear-gradient(180deg,#040408,var(--bg));border-radius:16px;display:block;box-shadow:0 20px 60px rgba(0,0,0,.5)}
 
 /* ══ CTA ══ */
-.cta{text-align:center;padding:5rem 2rem;max-width:600px;margin:0 auto}
-.cta .st{margin-bottom:1rem}
-.cta>p{font-size:.95rem;color:var(--muted);margin-bottom:2rem}
+.cta{text-align:center;padding:6rem 2rem;max-width:700px;margin:0 auto;position:relative;z-index:1}
+.cta .st{margin-bottom:1.5rem}
+.cta>p{font-size:1.05rem;color:var(--muted);margin-bottom:2.5rem;line-height:1.8}
 .ca{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
 
+/* ══ OUTCOME BANNER ══ */
+.outcome{background:linear-gradient(135deg,rgba(212,175,55,.1),rgba(220,38,38,.05));border:1px solid rgba(212,175,55,.2);border-radius:16px;padding:1.5rem 2rem;margin:3rem auto;max-width:600px;text-align:center}
+.outcome strong{color:var(--g);font-family:'Space Grotesk',sans-serif}
+
 /* ══ FOOTER ══ */
-footer{border-top:var(--border);padding:2rem;display:flex;justify-content:space-between;align-items:center;max-width:1200px;margin:0 auto}
-.fs{font-size:.75rem;color:var(--muted)}
-.fl{display:flex;gap:1.5rem}
-.fl a{font-size:.75rem;color:var(--muted);transition:color .2s}
+footer{border-top:var(--border);padding:2.5rem;display:flex;justify-content:space-between;align-items:center;max-width:1200px;margin:0 auto;position:relative;z-index:1}
+.fs{font-size:.8rem;color:var(--muted)}
+.fl{display:flex;gap:2rem}
+.fl a{font-size:.8rem;color:var(--muted);transition:color .3s}
 .fl a:hover{color:var(--g)}
 
 /* ══ RESPONSIVE ══ */
-@media(max-width:900px){
-.proof,.services,.stack,.process{grid-template-columns:repeat(2,1fr)}
+@media(max-width:1000px){
+.services-grid,.proof,.stack,.process{grid-template-columns:repeat(2,1fr)}
 .system,.px,.testimonials{grid-template-columns:1fr}
+.process::before{display:none}
 }
-@media(max-width:600px){
-.proof,.services,.stack,.process,.system,.px,.testimonials{grid-template-columns:1fr}
+@media(max-width:700px){
+.services-grid,.proof,.stack,.process,.system,.px,.testimonials{grid-template-columns:1fr}
 .nl{display:none}
-.hero,section{padding-left:1rem;padding-right:1rem}
+.hero,section{padding-left:1.25rem;padding-right:1.25rem}
+.philosophy{padding:2.5rem}
+.compare{overflow-x:auto}
 }
 
-/* ══ THREE.JS BACKGROUND ══ */
-#three{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:.4}
 .content{position:relative;z-index:1}
 </style>
 </head>
 <body>
 
-<canvas id="three"></canvas>
+<!-- 3D Background -->
+<div id="canvas-container">
+  <canvas id="scene"></canvas>
+  <div class="glow glow-r"></div>
+  <div class="glow glow-g"></div>
+</div>
+
 <div class="content">
 
 <!-- NAV -->
-<nav>
+<nav id="nav">
   <div class="logo">RASUL<span>.</span></div>
-  <div class="nl"><a href="#proof">Proof</a><a href="#services">Services</a><a href="#cases">Cases</a><a href="#process">Process</a></div>
+  <div class="nl">
+    <a href="#proof">Proof</a>
+    <a href="#services">Services</a>
+    <a href="#cases">Cases</a>
+    <a href="#process">Process</a>
+  </div>
   <a href="mailto:shaikhrasul02@gmail.com" class="nc">Work With Me →</a>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
   <div class="hi">
-    <svg class="emlem" viewBox="0 0 100 100"><polygon points="50,5 95,85 5,85" fill="none" stroke="#d4af37" stroke-width="2.5" opacity=".7"/><circle cx="50" cy="52" r="16" fill="none" stroke="#dc2626" stroke-width="2" opacity=".8"/><circle cx="50" cy="52" r="7" fill="#dc2626" opacity=".6"/></svg>
-    <div class="bdg"><span class="dt"></span>Available for Projects</div>
+    <svg class="emlem" viewBox="0 0 100 100" style="cursor:pointer">
+      <polygon points="50,5 95,85 5,85" fill="none" stroke="#d4af37" stroke-width="2" opacity=".8"/>
+      <circle cx="50" cy="50" r="22" fill="none" stroke="#dc2626" stroke-width="2" opacity=".9"/>
+      <circle cx="50" cy="50" r="10" fill="#dc2626" opacity=".7"/>
+      <circle cx="50" cy="50" r="4" fill="#d4af37"/>
+    </svg>
+    <div class="bdg"><span class="dt"></span>Available for Projects — Taking 2 Clients/Month</div>
     <h1 class="h1">AI GTM<br><em>Engineering</em></h1>
-    <p class="hp">I build <b>revenue systems</b> that compound. Signal-driven GTM automation for B2B scale-ups — from enrichment to pipeline, without the noise.</p>
+    <p class="hp">I build <b>revenue systems</b> that compound over time. Signal-driven GTM automation for B2B scale-ups — from ICP mapping to pipeline, without the noise.</p>
     <div class="acts">
       <a href="#cases" class="btn b1">See Results →</a>
-      <a href="https://linkedin.com/in/rasulshaikh" class="btn b2">LinkedIn</a>
+      <a href="https://linkedin.com/in/rasulshaikh" class="btn b2">LinkedIn Profile</a>
     </div>
   </div>
 </section>
 
 <!-- PROOF -->
 <section id="proof">
-  <div class="sl">Track Record</div>
-  <div class="st">Outcomes That Move Numbers</div>
+  <div class="sl" data-reveal>Track Record</div>
+  <div class="st" data-reveal>Outcomes That Move Numbers</div>
   <div class="proof">
-    <div class="pd"><div class="cl">Revenue Generated</div><div class="cv">$550K+</div></div>
-    <div class="pd"><div class="cl">Pipeline Created</div><div class="cv">$3.5M+</div></div>
-    <div class="pd cr"><div class="cl">SQL Conversion</div><div class="cv">16→27%</div></div>
-    <div class="pd"><div class="cl">Efficiency Gains</div><div class="cv">40%</div></div>
+    <div class="pd" data-reveal><div class="cl">Revenue Generated</div><div class="cv">$550K+</div></div>
+    <div class="pd" data-reveal><div class="cl">Pipeline Created</div><div class="cv">$3.5M+</div></div>
+    <div class="pd" data-reveal><div class="cl">SQL Conversion</div><div class="cv">16→27%</div></div>
+    <div class="pd" data-reveal><div class="cl">Efficiency Gains</div><div class="cv">40%</div></div>
   </div>
 </section>
 
 <!-- SERVICES -->
 <section id="services">
-  <div class="sl">What I Build</div>
-  <div class="st">Outcome-Based GTM Systems</div>
-  <div class="services">
-    <div class="sv">
-      <div class="si">🎯</div>
+  <div class="sl" data-reveal>What I Build</div>
+  <div class="st" data-reveal>Outcome-Based GTM Systems</div>
+  <div class="services-grid">
+    <div class="sv" data-reveal>
+      <span class="si">🎯</span>
       <div class="sn">Signal-Driven Outbound</div>
-      <div class="st">Intent signals, tech reveals, hiring triggers. Every message armed with enriched data. Cold email that doesn't feel cold.</div>
+      <div class="st">End-to-end outbound systems that book meetings. ICP modeling, TAM mapping, email infrastructure, and personalized copywriting that converts.</div>
+      <div class="deliverables">
+        <span class="del">Email Prospecting</span>
+        <span class="del">LinkedIn Outbound</span>
+        <span class="del">ICP Modeling</span>
+        <span class="del">List Building</span>
+        <span class="del">Lead Scoring</span>
+        <span class="del">Personalization</span>
+        <span class="del">CRM Sync</span>
+      </div>
     </div>
-    <div class="sv">
-      <div class="si">⚡</div>
+    <div class="sv" data-reveal>
+      <span class="si">⚡</span>
       <div class="sn">Automated Enrichment</div>
-      <div class="st">Clay-powered waterfall enrichment. 47+ data points per account. ICP scoring before CRM sync. No more manual research.</div>
+      <div class="st">Clay-powered waterfall enrichment. 47+ data points per account. ICP scoring before CRM sync. Data that compounds, not decays.</div>
+      <div class="deliverables">
+        <span class="del">Data Enrichment</span>
+        <span class="del">Intent Signals</span>
+        <span class="del">Tech Stack</span>
+        <span class="del">Firmographics</span>
+        <span class="del">Hiring Triggers</span>
+        <span class="del">Company Research</span>
+        <span class="del">Contact Data</span>
+      </div>
     </div>
-    <div class="sv">
-      <div class="si">🔄</div>
+    <div class="sv" data-reveal>
+      <span class="si">🔄</span>
       <div class="sn">Revenue Orchestration</div>
-      <div class="st">n8n workflows connecting Clay, HubSpot, Apollo, Instantly. Real-time routing. Alerts hit Slack in 60 seconds when it matters.</div>
+      <div class="st">n8n workflows connecting Clay, HubSpot, Apollo, Instantly. Real-time routing. Alerts hit Slack within 60 seconds of signal detection.</div>
+      <div class="deliverables">
+        <span class="del">Workflow Design</span>
+        <span class="del">API Integration</span>
+        <span class="del">Signal Routing</span>
+        <span class="del">Slack Alerts</span>
+        <span class="del">CRM Automation</span>
+        <span class="del">Analytics</span>
+        <span class="del">A/B Testing</span>
+      </div>
     </div>
-    <div class="sv">
-      <div class="si">📊</div>
+    <div class="sv" data-reveal>
+      <span class="si">📊</span>
       <div class="sn">Pipeline Infrastructure</div>
       <div class="st">Multi-domain setup. Warm-up protocols. SPF/DKIM/DMARC. Inbox rotation. Deliverability at 98%+ is the baseline, not the goal.</div>
+      <div class="deliverables">
+        <span class="del">Domain Setup</span>
+        <span class="del">Warm-up</span>
+        <span class="del">SPF/DKIM/DMARC</span>
+        <span class="del">Inbox Rotation</span>
+        <span class="del">Bounce Handling</span>
+        <span class="del">Reputation</span>
+      </div>
     </div>
-    <div class="sv">
-      <div class="si">🧠</div>
+    <div class="sv" data-reveal>
+      <span class="si">🧠</span>
       <div class="sn">ICP Self-Modeling</div>
       <div class="st">Self-improving ICP models from intent data, tech stack, firmographics. The system gets smarter as more data flows through it.</div>
+      <div class="deliverables">
+        <span class="del">ICP Analysis</span>
+        <span class="del">TAM Mapping</span>
+        <span class="del">Account Scoring</span>
+        <span class="del">Signal Analysis</span>
+        <span class="del">Conversion Data</span>
+      </div>
     </div>
-    <div class="sv">
-      <div class="si">🚀</div>
+    <div class="sv" data-reveal>
+      <span class="si">🚀</span>
       <div class="sn">Rapid Market Testing</div>
-      <div class="st">Validate new ICPs without pulling sales resources. Ship campaigns in days, not weeks. Measure, iterate, scale.</div>
+      <div class="st">Validate new ICPs without pulling sales resources. Ship campaigns in days, not weeks. Measure, iterate, scale what works.</div>
+      <div class="deliverables">
+        <span class="del">ICP Validation</span>
+        <span class="del">Campaign Launch</span>
+        <span class="del">A/B Testing</span>
+        <span class="del">Analytics</span>
+        <span class="del">Iteration</span>
+        <span class="del">Scaling</span>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- PHILOSOPHY -->
-<div class="philosophy" style="padding:4rem 2rem;max-width:1200px;margin:0 auto">
-  <div class="sl">The Approach</div>
-  <div class="st">Systems That Compound, Not Decay</div>
-  <div class="px">
-    <div class="ln">Extracting <em>the right signals</em> — not all signals. Only the ones correlated to actual buying intent.</div>
-    <div class="ln">Routing buyers <em>at the exact moment</em> — not too early, never too late. Precision timing.</div>
-    <div class="ln">Building <em>self-correcting loops</em> — adapting to performance data in real-time. No manual resets.</div>
-    <div class="ln">Outcome-based pricing — <em>aligned incentives</em>. You win when I win.</div>
-  </div>
+<!-- OUTCOME PRICING -->
+<div class="outcome" style="max-width:1200px;margin:0 auto 4rem">
+  <p><strong>Outcome-based pricing.</strong> You win when I win. Aligned incentives, not hourly billing.</p>
 </div>
+
+<!-- COMPARISON -->
+<section style="padding-top:0">
+  <div class="sl" data-reveal>Why Work With Me</div>
+  <div class="st" data-reveal>The Comparison</div>
+  <div class="compare">
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th>Me</th>
+          <th>SaaS Tool</th>
+          <th>Agency</th>
+          <th>Freelancer</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Full GTM system, not just tools</td>
+          <td class="check">✓</td>
+          <td class="cross">✗</td>
+          <td class="partial">~</td>
+          <td class="partial">~</td>
+        </tr>
+        <tr>
+          <td>Compounding data & learnings</td>
+          <td class="check">✓</td>
+          <td class="cross">✗</td>
+          <td class="cross">✗</td>
+          <td class="cross">✗</td>
+        </tr>
+        <tr>
+          <td>Custom workflows (not templates)</td>
+          <td class="check">✓</td>
+          <td class="partial">~</td>
+          <td class="partial">~</td>
+          <td class="check">✓</td>
+        </tr>
+        <tr>
+          <td>Engineering-level execution</td>
+          <td class="check">✓</td>
+          <td class="check">✓</td>
+          <td class="cross">✗</td>
+          <td class="partial">~</td>
+        </tr>
+        <tr>
+          <td>Outcome-based pricing</td>
+          <td class="check">✓</td>
+          <td class="cross">✗</td>
+          <td class="cross">✗</td>
+          <td class="partial">~</td>
+        </tr>
+        <tr>
+          <td>Self-correcting systems</td>
+          <td class="check">✓</td>
+          <td class="cross">✗</td>
+          <td class="cross">✗</td>
+          <td class="cross">✗</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
 
 <!-- SYSTEM -->
 <section>
-  <div class="sl">Architecture</div>
-  <div class="st">How The System Runs</div>
+  <div class="sl" data-reveal>Architecture</div>
+  <div class="st" data-reveal>How The System Runs</div>
   <div class="system">
-    <div class="sw"><div class="tt">MODULE I</div><div class="ch">Market Intelligence</div><div class="ct">ICP and TAM mapping. Accounts enriched with firmographics, intent, tech data. Scored on buying signals before CRM sync.</div></div>
-    <div class="sw"><div class="tt">MODULE II</div><div class="ch">Data Operations</div><div class="ct">CRM flows back for cleansing. Duplicates resolved, owners matched, missing fields refreshed. Auto-sync to HubSpot/Attio.</div></div>
-    <div class="sw"><div class="tt">MODULE III</div><div class="ch">Inbound Automation</div><div class="ct">Leads enriched, scored, routed instantly via Slack. High-intent triggers personalized outreach. Zero lag time.</div></div>
-    <div class="sw"><div class="tt">MODULE IV</div><div class="ch">Orchestration Layer</div><div class="ct">Clay handles enrichment, scoring, decisions. n8n manages cross-system timing. Clean signals, zero drift.</div></div>
+    <div class="sw" data-reveal><div class="tt">MODULE I</div><div class="ch">Market Intelligence</div><div class="ct">ICP and TAM mapping. Accounts enriched with firmographics, intent, tech data. Scored on buying signals before CRM sync.</div></div>
+    <div class="sw" data-reveal><div class="tt">MODULE II</div><div class="ch">Data Operations</div><div class="ct">CRM flows back for cleansing. Duplicates resolved, owners matched, missing fields refreshed. Auto-sync to HubSpot/Attio.</div></div>
+    <div class="sw" data-reveal><div class="tt">MODULE III</div><div class="ch">Inbound Automation</div><div class="ct">Leads enriched, scored, routed instantly via Slack. High-intent triggers personalized outreach. Zero lag time.</div></div>
+    <div class="sw" data-reveal><div class="tt">MODULE IV</div><div class="ch">Orchestration Layer</div><div class="ct">Clay handles enrichment, scoring, decisions. n8n manages cross-system timing. Clean signals, zero drift.</div></div>
   </div>
 </section>
 
 <!-- STACK -->
 <section id="stack">
-  <div class="sl">Tech Stack</div>
-  <div class="st">Tools In The System</div>
+  <div class="sl" data-reveal>Tech Stack</div>
+  <div class="st" data-reveal>Tools In The System</div>
   <div class="stack">
-    <div class="sk"><div style="font-size:1.5rem">🧠</div><div class="skn">Clay</div><div class="skd">Enrichment & Scoring</div></div>
-    <div class="sk"><div style="font-size:1.5rem">⚡</div><div class="skn">n8n</div><div class="skd">Workflow Orchestration</div></div>
-    <div class="sk"><div style="font-size:1.5rem">📈</div><div class="skn">HubSpot</div><div class="skd">CRM & Pipeline</div></div>
-    <div class="sk"><div style="font-size:1.5rem">✉️</div><div class="skn">Instantly</div><div class="skd">Cold Outbound</div></div>
-    <div class="sk"><div style="font-size:1.5rem">🎯</div><div class="skn">Apollo</div><div class="skd">Intent Data</div></div>
-    <div class="sk"><div style="font-size:1.5rem">💬</div><div class="skn">Attio</div><div class="skd">Flexible CRM</div></div>
-    <div class="sk"><div style="font-size:1.5rem">🔔</div><div class="skn">Slack</div><div class="skd">Signal Routing</div></div>
-    <div class="sk"><div style="font-size:1.5rem">🤖</div><div class="skn">Claude/LLMs</div><div class="skd">AI Copy & Analysis</div></div>
+    <div class="sk" data-reveal><span class="ico">🧠</span><div class="skn">Clay</div><div class="skd">Enrichment & Scoring</div></div>
+    <div class="sk" data-reveal><span class="ico">⚡</span><div class="skn">n8n</div><div class="skd">Workflows</div></div>
+    <div class="sk" data-reveal><span class="ico">📈</span><div class="skn">HubSpot</div><div class="skd">CRM & Pipeline</div></div>
+    <div class="sk" data-reveal><span class="ico">✉️</span><div class="skn">Instantly</div><div class="skd">Cold Outbound</div></div>
+    <div class="sk" data-reveal><span class="ico">🎯</span><div class="skn">Apollo</div><div class="skd">Intent Data</div></div>
+    <div class="sk" data-reveal><span class="ico">💬</span><div class="skn">Attio</div><div class="skd">Flexible CRM</div></div>
+    <div class="sk" data-reveal><span class="ico">🔔</span><div class="skn">Slack</div><div class="skd">Signal Routing</div></div>
+    <div class="sk" data-reveal><span class="ico">🤖</span><div class="skn">Claude/LLMs</div><div class="skd">AI Engine</div></div>
   </div>
 </section>
 
 <!-- CASES -->
 <section id="cases">
-  <div class="sl">Case Studies</div>
-  <div class="st">Results In The Wild</div>
+  <div class="sl" data-reveal>Case Studies</div>
+  <div class="st" data-reveal>Results In The Wild</div>
   <div class="cases">
-    <div class="cs">
+    <div class="cs" data-reveal>
       <div class="csh"><span class="ccl">B2B SaaS — Series A</span><div class="cms"><div class="cm"><div class="cmv">$180K</div><div class="cml">ARR Added</div></div><div class="cm"><div class="cmv">16→27%</div><div class="cml">SQL Conv.</div></div><div class="cm"><div class="cmv">6mo</div><div class="cml">Timeline</div></div></div></div>
-      <div class="cb">Built <b>signal-driven AI GTM stack</b> from zero in Clay. 47 enrichment keys across 5,000+ accounts. Routed top-tier leads via Slack within 120 seconds of signal detection. Added <b>$180K ARR</b> with zero headcount increase.</div>
+      <div class="cb">Built <b>signal-driven AI GTM stack</b> from zero in Clay. 47 enrichment keys across 5,000+ accounts. Routed top-tier leads via Slack within 120 seconds of signal detection. Added <b>$180K ARR</b> with zero headcount increase across 12 sending domains.</div>
     </div>
-    <div class="cs">
+    <div class="cs" data-reveal>
       <div class="csh"><span class="ccl">AI Infrastructure — Pre-Seed</span><div class="cms"><div class="cm"><div class="cmv">$370K</div><div class="cml">Pipeline</div></div><div class="cm"><div class="cmv">40%</div><div class="cml">Efficiency</div></div><div class="cm"><div class="cmv">3mo</div><div class="cml">Timeline</div></div></div></div>
-      <div class="cb">Founder had raw leads — zero system. Deployed <b>Clay enrichment engine</b> sourcing and scoring from public data. Automated workflows prioritized 470 accounts. <b>15+ hours/week reclaimed</b> from manual prospecting.</div>
+      <div class="cb">Founder had raw leads — zero system. Deployed <b>Clay enrichment engine</b> sourcing and scoring from public data, intent signals, web activity. Automated workflows prioritized 470 accounts. <b>15+ hours/week reclaimed</b> from manual prospecting.</div>
     </div>
-    <div class="cs">
+    <div class="cs" data-reveal>
       <div class="csh"><span class="ccl">FinTech — Seed to Series A</span><div class="cms"><div class="cm"><div class="cmv">-20%</div><div class="cml">Lead Leak</div></div><div class="cm"><div class="cmv">3×</div><div class="cml">Meetings</div></div><div class="cm"><div class="cmv">98%</div><div class="cml">Deliver.</div></div></div></div>
-      <div class="cb"><b>Multi-domain infrastructure</b> — 24 domains, 72 mailboxes, 14-day warm-up. AI-personalized with 17 enriched variables. <b>20% tighter qualification</b>, 35% fewer no-shows. Bounce below 2%.</div>
+      <div class="cb"><b>Multi-domain infrastructure</b> — 24 domains, 72 mailboxes, 14-day warm-up, AI-personalized with 17 enriched variables. <b>20% tighter qualification</b>, 35% fewer no-shows. Bounce below 2%, deliverability at 98%.</div>
     </div>
   </div>
 </section>
 
 <!-- PROCESS -->
 <section id="process">
-  <div class="sl">Timeline</div>
-  <div class="st">Zero to Revenue in 30 Days</div>
+  <div class="sl" data-reveal>Timeline</div>
+  <div class="st" data-reveal>Zero to Revenue in 30 Days</div>
   <div class="process">
-    <div class="ps"><div class="pk">WEEK 1</div><div class="pn">Discovery & Architecture</div><div class="pp">Stack audit, ICP modeling, TAM mapping. Blueprint everything before touching code.</div><div class="pd2"><span>ICP Model</span><span>TAM Map</span><span>Audit</span></div></div>
-    <div class="ps"><div class="pk">WEEK 2</div><div class="pn">Build & Integration</div><div class="pp">Clay tables, scoring, routing. n8n connecting everything. Testing with real data.</div><div class="pd2"><span>Clay</span><span>n8n</span><span>CRM Sync</span></div></div>
-    <div class="ps"><div class="pk">WEEK 3</div><div class="pn">Campaign Deploy</div><div class="pp">Outbound live. Inbound routing. Signals hit Slack. First meetings book.</div><div class="pd2"><span>Outbound</span><span>Routing</span><span>Dashboard</span></div></div>
-    <div class="ps"><div class="pk">WEEK 4+</div><div class="pn">Optimize & Scale</div><div class="pp">ICP tightened. Sequences refined. Scale what works. Machine compounds.</div><div class="pd2"><span>Reports</span><span>Playbook</span><span>Scale</span></div></div>
+    <div class="ps" data-reveal><div class="pk">WEEK 1</div><div class="pn">Discovery & Architecture</div><div class="pp">Stack audit, ICP modeling, TAM mapping. Blueprint everything before touching code.</div><div class="pd2"><span>ICP Model</span><span>TAM Map</span><span>Audit</span></div></div>
+    <div class="ps" data-reveal><div class="pk">WEEK 2</div><div class="pn">Build & Integration</div><div class="pp">Clay tables, scoring, routing. n8n connecting everything. Testing with real data.</div><div class="pd2"><span>Clay</span><span>n8n</span><span>CRM Sync</span></div></div>
+    <div class="ps" data-reveal><div class="pk">WEEK 3</div><div class="pn">Campaign Deploy</div><div class="pp">Outbound live. Inbound routing. Signals hit Slack. First meetings book.</div><div class="pd2"><span>Outbound</span><span>Routing</span><span>Dashboard</span></div></div>
+    <div class="ps" data-reveal><div class="pk">WEEK 4+</div><div class="pn">Optimize & Scale</div><div class="pp">ICP tightened. Sequences refined. Scale what works. Machine compounds.</div><div class="pd2"><span>Reports</span><span>Playbook</span><span>Scale</span></div></div>
   </div>
 </section>
 
 <!-- TESTIMONIALS -->
 <section>
-  <div class="sl">What They Say</div>
-  <div class="st">Direct Quotes</div>
+  <div class="sl" data-reveal>What They Say</div>
+  <div class="st" data-reveal>Direct Quotes</div>
   <div class="testimonials">
-    <div class="tq"><p>"Rasul doesn't just execute — he diagnoses. Found a bottleneck we'd missed for 6 months and fixed it in a week."</p><div class="tm">SaaS Founder</div><div class="tr">Series A B2B</div></div>
-    <div class="tq"><p>"Pipeline grew 3× in two quarters when we went from guessing ICP to data-driven confidence with his Clay system."</p><div class="tm">AI Startup CEO</div><div class="tr">Pre-Seed Infrastructure</div></div>
-    <div class="tq"><p>"Outbound went from 2% reply to 18% in three weeks. Same market, same product — just better signals."</p><div class="tm">VP of Sales</div><div class="tr">FinTech</div></div>
-    <div class="tq"><p>"Everything measured, everything automated. The system doesn't reset — it compounds. Thinks like an engineer."</p><div class="tm">GTM Lead</div><div class="tr">B2B Scale-up</div></div>
+    <div class="tq" data-reveal><p>"Rasul doesn't just execute — he diagnoses. Found a bottleneck we'd missed for 6 months and fixed it in a week."</p><div class="tm">SaaS Founder</div><div class="tr">Series A B2B</div></div>
+    <div class="tq" data-reveal><p>"Pipeline grew 3× in two quarters when we went from guessing ICP to data-driven confidence with his Clay system."</p><div class="tm">AI Startup CEO</div><div class="tr">Pre-Seed Infrastructure</div></div>
+    <div class="tq" data-reveal><p>"Outbound went from 2% reply to 18% in three weeks. Same market, same product — just better signals."</p><div class="tm">VP of Sales</div><div class="tr">FinTech</div></div>
+    <div class="tq" data-reveal><p>"Everything measured, everything automated. The system doesn't reset — it compounds. Thinks like an engineer."</p><div class="tm">GTM Lead</div><div class="tr">B2B Scale-up</div></div>
   </div>
 </section>
 
 <!-- GAME -->
 <div class="game">
-  <div class="sl">Proving Grounds</div>
-  <h2 class="st">Destroy GTM Anomalies</h2>
-  <div class="gi"><kbd>← →</kbd> Move &nbsp; <kbd>SPACE</kbd> Fire &nbsp; <kbd>R</kbd> Restart</div>
+  <div class="sl" data-reveal>Proving Grounds</div>
+  <h2 class="st" style="text-align:center">Destroy GTM Anomalies</h2>
+  <div class="gi"><kbd>← →</kbd> Move &nbsp;&nbsp; <kbd>SPACE</kbd> Fire &nbsp;&nbsp; <kbd>R</kbd> Restart</div>
   <div class="gh2"><span>SCORE: <span class="gsc" id="gs">0</span></span><span>LIVES: <span id="gl">◆◆◆</span></span><span>WAVE: <span id="gw">1</span></span></div>
-  <canvas id="gc" width="700" height="380"></canvas>
+  <canvas id="gc" width="800" height="400"></canvas>
 </div>
 
 <!-- CTA -->
 <section class="cta">
   <div class="st">Ready to Build <span style="color:var(--r)">Your System</span>?</div>
-  <p>Let's talk about your GTM goals. No fluff, no agency pitches. Just engineering for revenue.</p>
+  <p>Let's talk about your GTM goals. No fluff, no agency pitches. Just engineering for revenue. Taking 2 clients/month to ensure quality.</p>
   <div class="ca">
     <a href="mailto:shaikhrasul02@gmail.com" class="btn b1">Start a Project →</a>
     <a href="https://linkedin.com/in/rasulshaikh" class="btn b2">View LinkedIn</a>
@@ -335,7 +502,7 @@ footer{border-top:var(--border);padding:2rem;display:flex;justify-content:space-
 
 <!-- FOOTER -->
 <footer>
-  <div class="fs">© 2024 RASUL — GTM Engineer</div>
+  <div class="fs">© 2024 RASUL — AI GTM Engineer</div>
   <div class="fl">
     <a href="mailto:shaikhrasul02@gmail.com">Email</a>
     <a href="https://linkedin.com/in/rasulshaikh">LinkedIn</a>
@@ -346,78 +513,182 @@ footer{border-top:var(--border);padding:2rem;display:flex;justify-content:space-
 </div>
 
 <script>
-// Three.js background
-const canvas = document.getElementById('three');
-const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
-const renderer = new THREE.WebGLRenderer({canvas, alpha:true});
-renderer.setSize(window.innerWidth, window.innerHeight);
-camera.position.z = 30;
-const geometry = new THREE.BufferGeometry();
-const count = 200;
-const positions = new Float32Array(count * 3);
-for(let i=0;i<count*3;i++) positions[i]=Math.random()*100-50;
-geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-const material = new THREE.PointsMaterial({color:0xd4af37, size:0.5});
-const stars = new THREE.Points(geometry, material);
-scene.add(stars);
+// ══ 3D PARTICLE SCENE ══
+const canvas = document.getElementById('scene');
+const ctx = canvas.getContext('2d');
+let w, h, particles=[];
+const PARTICLE_COUNT = 80;
+
+function resize(){
+  w = canvas.width = window.innerWidth;
+  h = canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener('resize', resize);
+
+class Particle{
+  constructor(){
+    this.reset();
+  }
+  reset(){
+    this.x = Math.random() * w;
+    this.y = Math.random() * h;
+    this.size = Math.random() * 2 + 0.5;
+    this.speedX = (Math.random() - 0.5) * 0.3;
+    this.speedY = (Math.random() - 0.5) * 0.3;
+    this.opacity = Math.random() * 0.5 + 0.2;
+    this.color = Math.random() > 0.5 ? '#d4af37' : '#dc2626';
+  }
+  update(){
+    this.x += this.speedX;
+    this.y += this.speedY;
+    if(this.x < 0 || this.x > w) this.speedX *= -1;
+    if(this.y < 0 || this.y > h) this.speedY *= -1;
+  }
+  draw(){
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    ctx.fillStyle = this.color;
+    ctx.globalAlpha = this.opacity;
+    ctx.fill();
+    ctx.globalAlpha = 1;
+  }
+}
+
+for(let i = 0; i < PARTICLE_COUNT; i++){
+  particles.push(new Particle());
+}
+
+let mouseX = 0, mouseY = 0;
+document.addEventListener('mousemove', e => {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+});
+
 function animate(){
+  ctx.clearRect(0, 0, w, h);
+  
+  for(let i = 0; i < particles.length; i++){
+    for(let j = i + 1; j < particles.length; j++){
+      const dx = particles[i].x - particles[j].x;
+      const dy = particles[i].y - particles[j].y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      if(dist < 150){
+        ctx.beginPath();
+        ctx.moveTo(particles[i].x, particles[i].y);
+        ctx.lineTo(particles[j].x, particles[j].y);
+        ctx.strokeStyle = `rgba(212, 175, 55, ${0.1 * (1 - dist/150)})`;
+        ctx.stroke();
+      }
+    }
+    const mdx = particles[i].x - mouseX;
+    const mdy = particles[i].y - mouseY;
+    const mDist = Math.sqrt(mdx * mdx + mdy * mdy);
+    if(mDist < 100){
+      particles[i].opacity = Math.min(0.8, particles[i].opacity + 0.02);
+    } else {
+      particles[i].opacity = Math.max(0.2, particles[i].opacity - 0.01);
+    }
+    particles[i].update();
+    particles[i].draw();
+  }
   requestAnimationFrame(animate);
-  stars.rotation.y += 0.001;
-  renderer.render(scene, camera);
 }
 animate();
 
-// Game
+// ══ NAV SCROLL ══
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// ══ SCROLL REVEAL ══
+const reveals = document.querySelectorAll('[data-reveal]');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, index) => {
+    if(entry.isIntersecting){
+      setTimeout(() => {
+        entry.target.classList.add('reveal');
+      }, index * 100);
+    }
+  });
+}, {threshold: 0.1});
+reveals.forEach(el => observer.observe(el));
+
+// ══ GAME ══
 const gc = document.getElementById('gc');
-const ctx = gc.getContext('2d');
+const gctx = gc.getContext('2d');
 let score=0, lives=3, wave=1, gameOver=false;
-const ship={x:350,y:350,w:30,h:20};
+const ship={x:400,y:360,w:35,h:25};
 const bullets=[];
 const enemies=[];
-const ecols=5, erows=3, esp=20;
-let eDX=1;
+const ecols=6, erows=3;
+let eDX=1.5, enemySpeed=1;
+
 function spawnEnemies(){
   enemies.length=0;
-  for(let r=0;r<erows;r++) for(let c=0;c<ecols;c++) enemies.push({x:c*80+60,y:r*50+50,w:30,h:20});
+  for(let r=0;r<erows;r++) for(let c=0;c<ecols;c++) 
+    enemies.push({x:c*80+80,y:r*45+60,w:30,h:20,hp:1});
 }
 spawnEnemies();
+
 document.addEventListener('keydown',e=>{
-  if(e.key==='ArrowLeft'||e.key==='a') ship.x-=15;
-  if(e.key==='ArrowRight'||e.key==='d') ship.x+=15;
-  if(e.key===' '){ bullets.push({x:ship.x,y:ship.y-10}); e.preventDefault();}
-  if(e.key==='r'||e.key==='R'){score=0;lives=3;wave=1;gameOver=false;spawnEnemies();}
+  if(e.key==='ArrowLeft'||e.key==='a') ship.x=Math.max(20,ship.x-20);
+  if(e.key==='ArrowRight'||e.key==='d') ship.x=Math.min(780,ship.x+20);
+  if(e.key===' '){ bullets.push({x:ship.x,y:ship.y-10,vy:-8}); e.preventDefault();}
+  if(e.key==='r'||e.key==='R'){score=0;lives=3;wave=1;gameOver=false;enemySpeed=1;spawnEnemies();}
 });
+
 function update(){
   if(gameOver) return;
-  bullets.forEach(b=>b.y-=8);
+  bullets.forEach(b=>b.y+=b.vy);
   bullets.forEach((b,i)=>{if(b.y<0)bullets.splice(i,1)});
   let edge=false;
-  enemies.forEach(e=>{e.x+=eDX;if(e.x>670||e.x<10)edge=true;});
-  if(edge){eDX*=-1;enemies.forEach(e=>e.y+=20);}
+  enemies.forEach(e=>{e.x+=eDX*enemySpeed;if(e.x>770||e.x<10)edge=true;});
+  if(edge){eDX*=-1;enemies.forEach(e=>e.y+=25);}
   bullets.forEach((b,bi)=>{
     enemies.forEach((e,ei)=>{
       if(Math.abs(b.x-e.x)<25&&Math.abs(b.y-e.y)<20){bullets.splice(bi,1);enemies.splice(ei,1);score+=10;}
     });
   });
-  if(enemies.length===0){wave++;spawnEnemies();}
-  enemies.forEach(e=>{if(e.y>350)lives--;});
+  if(enemies.length===0){wave++;enemySpeed+=0.2;spawnEnemies();}
+  enemies.forEach(e=>{if(e.y>360)lives--;});
   if(lives<=0)gameOver=true;
   document.getElementById('gs').textContent=score;
   document.getElementById('gl').textContent='◆'.repeat(Math.max(0,lives));
   document.getElementById('gw').textContent=wave;
 }
+
 function draw(){
-  ctx.fillStyle='#040408';
-  ctx.fillRect(0,0,700,380);
-  ctx.fillStyle='#dc2626';
-  ctx.fillRect(ship.x-ship.w/2,ship.y,ship.w,ship.h);
-  ctx.fillStyle='#d4af37';
-  bullets.forEach(b=>{ctx.fillRect(b.x-2,b.y-8,4,12);});
-  ctx.fillStyle='#dc2626';
-  enemies.forEach(e=>{ctx.fillRect(e.x-e.w/2,e.y,e.w,e.h);});
+  gctx.fillStyle='#040408';
+  gctx.fillRect(0,0,800,400);
+  gctx.fillStyle='rgba(255,255,255,0.3)';
+  for(let i=0;i<50;i++) gctx.fillRect(Math.random()*800,Math.random()*400,1,1);
+  gctx.fillStyle='#dc2626';
+  gctx.beginPath();
+  gctx.moveTo(ship.x,ship.y-ship.h/2);
+  gctx.lineTo(ship.x-ship.w/2,ship.y+ship.h/2);
+  gctx.lineTo(ship.x+ship.w/2,ship.y+ship.h/2);
+  gctx.fill();
+  gctx.fillStyle='#d4af37';
+  bullets.forEach(b=>{gctx.fillRect(b.x-2,b.y-8,4,12);});
+  enemies.forEach(e=>{
+    gctx.fillStyle='#dc2626';
+    gctx.fillRect(e.x-e.w/2,e.y,e.w,e.h);
+    gctx.fillStyle='rgba(212,175,55,0.5)';
+    gctx.fillRect(e.x-e.w/4,e.y+e.h/4,e.w/2,e.h/4);
+  });
 }
-function gameLoop(){update();draw();if(!gameOver)requestAnimationFrame(gameLoop);else{ctx.fillStyle='#dc2626';ctx.font='bold 36px Space Grotesk';ctx.textAlign='center';ctx.fillText('GAME OVER',350,190);ctx.font='18px Inter';ctx.fillStyle='#d4af37';ctx.fillText('Press R to restart',350,230);}}
+
+function gameLoop(){update();draw();if(!gameOver)requestAnimationFrame(gameLoop);else{
+  gctx.fillStyle='rgba(6,6,16,0.9)';
+  gctx.fillRect(0,0,800,400);
+  gctx.fillStyle='#dc2626';gctx.font='bold 48px Space Grotesk';gctx.textAlign='center';
+  gctx.fillText('GAME OVER',400,180);
+  gctx.fillStyle='#d4af37';gctx.font='24px Inter';
+  gctx.fillText(`Final Score: ${score}`,400,230);
+  gctx.font='18px Inter';gctx.fillText('Press R to restart',400,280);
+}}
 gameLoop();
 </script>
 </body>
