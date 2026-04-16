@@ -3,490 +3,422 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RASUL — GTM Engineer</title>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+<title>RASUL — AI GTM Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{--r:#dc2626;--g:#d4af37;--bg:#060610;--card:#0c0c1a;--t1:#f0ebe3;--t2:#a8a090;--t3:#5a5548}
+:root{--r:#dc2626;--g:#d4af37;--bg:#060610;--card:#0c0c1a;--text:#f0ebe3;--muted:#8a8a8e;--subtle:#4a4a4a;--border:rgba(255,255,255,.06)}
 html{scroll-behavior:smooth}
-body{font-family:'Courier New',monospace;color:var(--t1);background:#000;overflow-x:hidden;line-height:1.7}
-
-/* Three.js sits behind everything */
-#three{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
-
-/* Content layer — every section has solid background */
-.content{position:relative;z-index:1}
+body{font-family:'Inter',sans-serif;color:var(--text);background:var(--bg);line-height:1.7;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+img{max-width:100%}
 
 /* ══ NAV ══ */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:.7rem 1.5rem;background:rgba(6,6,16,.97);border-bottom:1px solid rgba(220,38,38,.12);backdrop-filter:blur(6px)}
-.logo{font-family:'Orbitron',sans-serif;font-weight:900;font-size:.85rem;color:var(--r);letter-spacing:.12em;text-shadow:0 0 12px rgba(220,38,38,.3)}
-.logo span{color:var(--g)}
-.nl{display:flex;gap:.8rem}
-.nl a{color:var(--t2);text-decoration:none;font-size:.55rem;letter-spacing:.08em;text-transform:uppercase;font-family:'Courier New',monospace;transition:color .2s}
-.nl a:hover{color:var(--g)}
-.nc{padding:.2rem .6rem;border:1px solid var(--r);color:var(--r);text-decoration:none;font-size:.55rem;letter-spacing:.08em;text-transform:uppercase;font-family:'Courier New',monospace;background:rgba(220,38,38,.04)}
-
-/* ══ SECTIONS ══ */
-section{padding:3rem 1.5rem;position:relative}
-.si{max-width:840px;margin:0 auto}
-.sl{font-size:.5rem;letter-spacing:.18em;color:var(--g);margin-bottom:.6rem;text-transform:uppercase;font-family:'Orbitron',sans-serif}
-.st{font-family:'Orbitron',sans-serif;font-size:clamp(1rem,2.8vw,1.8rem);font-weight:700;color:#fff;line-height:1.2;margin-bottom:1.5rem}
-
-/* Every card/box gets solid dark background with opacity=1 to block Three.js */
-.c4{display:grid;grid-template-columns:repeat(4,1fr);gap:.5rem;margin-bottom:.8rem}
-.c3{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem}
-.c2{display:grid;grid-template-columns:repeat(2,1fr);gap:.5rem}
-.cd{background:rgba(12,12,26,.98);border:1px solid rgba(255,255,255,.05);padding:1.2rem;border-radius:2px}
-.cl{font-size:.45rem;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);margin-bottom:.3rem;font-family:'Courier New',monospace}
-.cv{font-family:'Orbitron',sans-serif;font-size:clamp(1rem,2vw,1.5rem);font-weight:700}
-.cg{color:var(--g)}.cr{color:var(--r)}
-.ch{font-family:'Orbitron',sans-serif;font-size:.9rem;font-weight:700;color:#fff;margin-bottom:.4rem;text-transform:uppercase}
-.ct{font-size:.8rem;color:var(--t2);line-height:1.6}
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem;background:rgba(6,6,16,.95);border-bottom:var(--border);backdrop-filter:blur(20px)}
+.logo{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.9rem;color:var(--text);letter-spacing:-.02em}
+.logo span{color:var(--r)}
+.nl{display:flex;gap:2rem}
+.nl a{color:var(--muted);font-size:.75rem;font-weight:500;transition:color .2s}
+.nl a:hover{color:var(--text)}
+.nc{display:inline-flex;align-items:center;gap:.5rem;padding:.5rem 1rem;background:var(--r);color:#fff;font-size:.75rem;font-weight:600;border-radius:6px;transition:opacity .2s}
+.nc:hover{opacity:.9}
 
 /* ══ HERO ══ */
-.hero{min-height:100vh;display:flex;align-items:center;background:rgba(6,6,16,.85);padding-top:6rem}
-.hi{max-width:760px}
-.emlem{width:65px;height:65px;margin-bottom:1rem}
-.bdg{display:inline-flex;align-items:center;gap:.4rem;padding:.2rem .5rem;border:1px solid rgba(220,38,38,.2);font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;color:var(--g);margin-bottom:1rem;background:rgba(6,6,16,.9);font-family:'Courier New',monospace}
-.bdg .dt{width:4px;height:4px;border-radius:50%;background:var(--r)}
-.h1{font-family:'Orbitron',sans-serif;font-size:clamp(1.8rem,5.5vw,4rem);font-weight:900;color:#fff;line-height:1.05;margin-bottom:.7rem}
+.hero{min-height:100vh;display:flex;align-items:center;padding:8rem 2rem 4rem;max-width:1200px;margin:0 auto}
+.hi{max-width:720px}
+.emlem{width:60px;height:60px;margin-bottom:1.5rem}
+.bdg{display:inline-flex;align-items:center;gap:.5rem;padding:.3rem .75rem;background:rgba(220,38,38,.1);border:1px solid rgba(220,38,38,.2);font-size:.7rem;color:var(--g);margin-bottom:1.5rem;border-radius:20px}
+.bdg .dt{width:6px;height:6px;border-radius:50%;background:var(--r);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(2.5rem,6vw,4.5rem);font-weight:700;color:var(--text);line-height:1.1;margin-bottom:1.5rem;letter-spacing:-.03em}
 .h1 em{color:var(--r);font-style:normal}
-.hp{font-size:.85rem;color:var(--t2);line-height:1.7;margin-bottom:1rem;max-width:480px}
-.hp b{color:var(--g)}
-.acts{display:flex;gap:.5rem;flex-wrap:wrap}
-.btn{display:inline-flex;padding:.6rem 1.1rem;text-decoration:none;font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;border:none;font-family:'Courier New',monospace;transition:all .3s}
-.b1{border:1px solid var(--r);color:var(--r);background:rgba(220,38,38,.06)}
-.b1:hover{background:rgba(220,38,38,.14);box-shadow:0 0 18px rgba(220,38,38,.2)}
-.b2{border:1px solid var(--g);color:var(--g);background:rgba(212,175,55,.04)}.b2:hover{background:rgba(212,175,55,.1)}
-.b3{border:1px solid rgba(255,255,255,.1);color:var(--t2);background:transparent}.b3:hover{border-color:var(--g);color:var(--g)}
+.hp{font-size:1.1rem;color:var(--muted);line-height:1.8;margin-bottom:2rem;max-width:520px}
+.hp b{color:var(--text)}
+.acts{display:flex;gap:1rem;flex-wrap:wrap}
+.btn{display:inline-flex;padding:.75rem 1.5rem;font-size:.8rem;font-weight:600;border-radius:8px;cursor:pointer;border:none;transition:all .3s}
+.b1{background:var(--r);color:#fff}
+.b1:hover{opacity:.9;transform:translateY(-2px)}
+.b2{border:1px solid var(--border);color:var(--text);background:transparent}
+.b2:hover{border-color:var(--g);color:var(--g)}
 
-/* ══ SEPARATOR ══ */
-.sep{height:30px;display:flex;align-items:center;justify-content:center;background:rgba(8,8,14,.98)}
-.sep::before{content:'';width:100px;height:1px;background:linear-gradient(90deg,transparent,var(--r),transparent)}
-.sep::after{content:'◆';color:rgba(220,38,38,.25);font-size:.35rem;margin-left:.3rem}
+/* ══ SECTION ══ */
+section{padding:5rem 2rem;max-width:1200px;margin:0 auto}
+.sl{font-size:.65rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--g);margin-bottom:.75rem}
+.st{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.75rem,4vw,2.5rem);font-weight:700;color:var(--text);line-height:1.2;margin-bottom:1rem}
 
-/* ══ SECTIONS ALTERNATE BG ══ */
-section{background:rgba(6,6,16,.92)}
-section.alt{background:rgba(8,8,16,.96)}
+/* ══ PROOF ══ */
+.proof{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin:2rem 0}
+.pd{background:var(--card);border:1px solid var(--border);padding:1.5rem;border-radius:12px;text-align:center}
+.pd .cl{font-size:.65rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:.5rem}
+.pd .cv{font-family:'Space Grotesk',sans-serif;font-size:2rem;font-weight:700;color:var(--g)}
+.pd.cr .cv{color:var(--r)}
 
-/* ══ POWER ══ */
-.pw3{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem}
-.pw{padding:1.4rem;background:rgba(12,12,26,.98);border:1px solid rgba(212,175,55,.06);text-align:center}
-.pw .pe{font-size:1.4rem;margin-bottom:.3rem}.pw .pn{font-family:'Orbitron',sans-serif;font-size:.7rem;color:var(--g);font-weight:700;text-transform:uppercase;margin-bottom:.3rem}
-.pw .pt{font-size:.7rem;color:var(--t2)}
+/* ══ SERVICES ══ */
+.services{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.sv{background:var(--card);border:1px solid var(--border);padding:2rem;border-radius:16px;transition:all .3s}
+.sv:hover{border-color:rgba(220,38,38,.3);transform:translateY(-4px)}
+.sv .si{font-size:2rem;margin-bottom:1rem}
+.sv .sn{font-family:'Space Grotesk',sans-serif;font-size:1.1rem;font-weight:600;color:var(--text);margin-bottom:.75rem}
+.sv .st{font-size:.85rem;color:var(--muted);line-height:1.6}
 
 /* ══ PHILOSOPHY ══ */
-.ph{border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06);margin:1rem 0}
-.ln{padding:.6rem 0;border-bottom:1px solid rgba(255,255,255,.03);font-size:.85rem;color:var(--t1)}
-.ln:last-child{border-bottom:none}.ln em{color:var(--r);font-style:normal}
+.philosophy{padding:4rem 2rem;background:var(--card);border-radius:24px;margin:4rem 0}
+.philosophy .st{margin-bottom:1.5rem}
+.px{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem}
+.px .ln{font-size:.95rem;color:var(--muted);padding:.75rem 0;border-bottom:1px solid var(--border)}
+.px .ln:last-child{border-bottom:none}
+.px .ln em{color:var(--r);font-style:normal}
 
 /* ══ SYSTEM ══ */
-.sg{display:grid;grid-template-columns:repeat(2,1fr);gap:.5rem}
-.sw{background:rgba(12,12,26,.98);border:1px solid rgba(255,255,255,.05);padding:1.2rem}
-.tt{font-size:.45rem;letter-spacing:.1em;color:var(--g);text-transform:uppercase;margin-bottom:.4rem}
-.tt::before{content:'> ';color:var(--r)}
+.system{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;margin-top:2rem}
+.sw{background:var(--card);border:1px solid var(--border);padding:1.75rem;border-radius:12px}
+.sw .tt{font-size:.6rem;font-weight:600;letter-spacing:.1em;color:var(--g);text-transform:uppercase;margin-bottom:.5rem}
+.sw .tt::before{content:'// ';color:var(--r)}
+.sw .ch{font-family:'Space Grotesk',sans-serif;font-size:1rem;font-weight:600;color:var(--text);margin-bottom:.5rem}
+.sw .ct{font-size:.85rem;color:var(--muted);line-height:1.6}
 
-/* ══ BUILD ══ */
-.b3{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem}
-.bi{background:rgba(12,12,26,.98);border:1px solid rgba(255,255,255,.05);padding:1rem}
-.bn{font-size:.4rem;color:rgba(212,175,55,.3);margin-bottom:.3rem;font-family:'Orbitron',sans-serif}
-.bnm{font-family:'Orbitron',sans-serif;font-size:.7rem;font-weight:700;color:#fff;text-transform:uppercase;margin-bottom:.3rem;line-height:1.3}
-.bt{font-size:.7rem;color:var(--t2);line-height:1.5}
-
-/* ══ STACK (with original logos) ══ */
-.sk4{display:grid;grid-template-columns:repeat(4,1fr);gap:.5rem}
-.sk{background:rgba(12,12,26,.98);border:1px solid rgba(255,255,255,.04);padding:1rem;text-align:center}
-.sk img{width:40px;height:40px;margin:0 auto .4rem;display:block;border-radius:6px}
-.skn{font-family:'Orbitron',sans-serif;font-size:.65rem;font-weight:700;color:#fff;margin-bottom:.2rem}
-.skd{font-size:.55rem;color:var(--t2);line-height:1.3}.skt{font-size:.38rem;letter-spacing:.08em;text-transform:uppercase;color:var(--r);margin-top:.2rem}
+/* ══ STACK ══ */
+.stack{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:2rem}
+.sk{background:var(--card);border:1px solid var(--border);padding:1.25rem;text-align:center;border-radius:12px;transition:all .2s}
+.sk:hover{border-color:var(--g)}
+.sk img{width:36px;height:36px;margin:0 auto .5rem;display:block}
+.sk .skn{font-family:'Space Grotesk',sans-serif;font-size:.75rem;font-weight:600;color:var(--text);margin-bottom:.25rem}
+.sk .skd{font-size:.65rem;color:var(--muted);line-height:1.4}
+.sk .skt{font-size:.55rem;letter-spacing:.08em;text-transform:uppercase;color:var(--r);margin-top:.5rem}
 
 /* ══ CASES ══ */
-.cs{border:1px solid rgba(220,38,38,.08);background:rgba(12,12,26,.98);padding:1.2rem;margin-bottom:.6rem}
-.csh{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:.3rem;margin-bottom:.5rem}
-.ccl{font-size:.45rem;letter-spacing:.1em;text-transform:uppercase;color:var(--t3)}
-.cms{display:flex;gap:1rem;flex-wrap:wrap}.cm{text-align:center}
-.cmv{font-family:'Orbitron',sans-serif;font-size:1rem;font-weight:700;color:var(--r)}
-.cml{font-size:.38rem;letter-spacing:.06em;text-transform:uppercase;color:var(--t3);margin-top:.15rem}
-.cb{font-size:.78rem;color:var(--t2);line-height:1.6}.cb b{color:var(--t1)}
-
-/* ══ TESTIMONIALS ══ */
-.tq{background:rgba(12,12,26,.98);border:1px solid rgba(255,255,255,.04);padding:1.2rem}
-.tq p{font-style:italic;font-size:.82rem;color:var(--t1);line-height:1.6;margin-bottom:.5rem}
-.tm{font-size:.65rem;color:var(--t1);font-family:'Orbitron',sans-serif;font-weight:700}
-.tr{font-size:.55rem;color:var(--t3)}
-
-/* ══ ELITE ══ */
-.e3{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;margin:1rem 0}
+.cases{display:grid;gap:1.5rem}
+.cs{background:var(--card);border:1px solid rgba(220,38,38,.1);padding:2rem;border-radius:16px}
+.csh{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1rem;flex-wrap:wrap;gap:1rem}
+.ccl{font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.cms{display:flex;gap:2rem}
+.cm{text-align:center}
+.cmv{font-family:'Space Grotesk',sans-serif;font-size:1.25rem;font-weight:700;color:var(--r)}
+.cml{font-size:.6rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-top:.25rem}
+.cb{font-size:.9rem;color:var(--muted);line-height:1.7}
+.cb b{color:var(--text)}
 
 /* ══ PROCESS ══ */
-.tl{position:relative;padding-left:1.5rem;margin-top:.8rem}
-.tl::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,var(--r),var(--g))}
-.ts{position:relative;margin-bottom:1.5rem}
-.ts::before{content:'';position:absolute;left:-1.8rem;top:.3rem;width:5px;height:5px;border-radius:50%;background:var(--r);box-shadow:0 0 6px rgba(220,38,38,.3)}
-.tk{font-size:.4rem;letter-spacing:.1em;color:var(--g);text-transform:uppercase;margin-bottom:.2rem}
-.tn{font-family:'Orbitron',sans-serif;font-size:.8rem;font-weight:700;color:#fff;text-transform:uppercase;margin-bottom:.3rem}
-.tp{font-size:.75rem;color:var(--t2);line-height:1.5;max-width:460px}
-.dl{display:flex;gap:.3rem;flex-wrap:wrap;margin-top:.4rem}
-.dt{font-size:.4rem;padding:.1rem .35rem;border:1px solid rgba(212,175,55,.1);color:var(--t3)}
+.process{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:2rem}
+.ps{position:relative;background:var(--card);border:1px solid var(--border);padding:1.75rem;border-radius:12px}
+.ps::before{content:'';position:absolute;top:1.75rem;right:-1rem;width:2rem;height:1px;background:var(--border)}
+.ps:last-child::before{display:none}
+.pk{font-size:.6rem;font-weight:600;letter-spacing:.1em;color:var(--g);text-transform:uppercase;margin-bottom:.5rem}
+.pn{font-family:'Space Grotesk',sans-serif;font-size:1rem;font-weight:600;color:var(--text);margin-bottom:.5rem}
+.pp{font-size:.8rem;color:var(--muted);line-height:1.5}
+.pd2{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1rem}
+.pd2 span{font-size:.6rem;padding:.2rem .5rem;background:rgba(212,175,55,.1);border:1px solid rgba(212,175,55,.2);color:var(--muted);border-radius:4px}
+
+/* ══ TESTIMONIALS ══ */
+.testimonials{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem}
+.tq{background:var(--card);border:1px solid var(--border);padding:1.75rem;border-radius:12px}
+.tq p{font-size:.9rem;color:var(--text);line-height:1.7;margin-bottom:1rem;font-style:italic}
+.tm{font-family:'Space Grotesk',sans-serif;font-size:.8rem;font-weight:600;color:var(--text)}
+.tr{font-size:.7rem;color:var(--muted)}
 
 /* ══ GAME ══ */
-.gc{max-width:700px;margin:0 auto;text-align:center}
-.gi{font-size:.6rem;color:var(--t3);margin-bottom:.6rem;display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap}
-.gi kbd{display:inline-block;padding:.08rem .3rem;border:1px solid var(--r);color:var(--r);font-size:.5rem}
-#gc{width:100%;border:1px solid rgba(220,38,38,.1);background:#040408;display:block}
-.gh2{display:flex;justify-content:space-between;padding:.3rem 0;max-width:700px;margin:0 auto;font-size:.55rem;color:var(--t3)}
-.gsc{color:var(--r);font-family:'Orbitron',sans-serif;font-size:.85rem}
-
-/* ══ QUOTE ══ */
-.qs{text-align:center;padding:3rem 1.5rem}
-.qs blockquote{font-family:'Orbitron',sans-serif;font-size:clamp(1rem,2.5vw,2rem);color:#fff;line-height:1.2;margin-bottom:.5rem}
-.qs blockquote em{color:var(--g);font-style:normal}
-.qs .au{font-size:.7rem;color:var(--t3);font-style:italic}
-.qs .sl2{width:25px;height:1px;background:var(--r);margin:1rem auto}
-.qs p{font-size:.8rem;color:var(--t2);line-height:1.6;max-width:480px;margin:.8rem auto 0}
-
-/* ══ FAQ ══ */
-.fi{border:1px solid rgba(255,255,255,.04);margin-bottom:.2rem}
-.fq{padding:.9rem 1rem;color:var(--t1);cursor:pointer;display:flex;justify-content:space-between;font-size:.8rem;background:rgba(12,12,26,.95);font-family:'Courier New',monospace}
-.fq:hover{color:var(--g)}.fi .fic{color:var(--r);transition:transform .3s}
-.fi.opn .fic{transform:rotate(45deg)}
-.fa2{background:rgba(10,10,18,.95);max-height:0;overflow:hidden;transition:max-height .3s}
-.fi.opn .fa2{max-height:160px}
-.fai{padding:0 1rem .8rem;font-size:.75rem;color:var(--t2);line-height:1.6}
+.game{max-width:800px;margin:0 auto;text-align:center;padding:4rem 2rem}
+.game .sl{text-align:center;margin-bottom:.5rem}
+.gi{font-size:.75rem;color:var(--muted);margin-bottom:1.5rem;display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.gi kbd{display:inline-block;padding:.2rem .5rem;background:var(--card);border:1px solid var(--r);color:var(--r);font-size:.7rem;border-radius:4px;font-family:'Space Grotesk',sans-serif}
+#gc{width:100%;border:1px solid rgba(220,38,38,.1);background:#040408;border-radius:12px;display:block}
+.gh2{display:flex;justify-content:space-between;padding:1rem 0;max-width:700px;margin:0 auto;font-size:.75rem;color:var(--muted)}
+.gsc{color:var(--r);font-family:'Space Grotesk',sans-serif;font-size:1rem;font-weight:700}
 
 /* ══ CTA ══ */
-.cbx{max-width:520px;margin:0 auto;padding:1.8rem;background:rgba(12,12,26,.98);border:1px solid rgba(212,175,55,.06);text-align:center}
-.cbx h2{font-family:'Orbitron',sans-serif;font-size:clamp(.9rem,2.2vw,1.4rem);color:#fff;margin-bottom:.5rem;text-transform:uppercase;line-height:1.3}
-.cbx h2 em{color:var(--r);font-style:normal}
-.cbx>p{font-size:.75rem;color:var(--t2);margin-bottom:1rem;line-height:1.6}
-.ca{display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap}
+.cta{text-align:center;padding:5rem 2rem;max-width:600px;margin:0 auto}
+.cta .st{margin-bottom:1rem}
+.cta>p{font-size:.95rem;color:var(--muted);margin-bottom:2rem}
+.ca{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
 
 /* ══ FOOTER ══ */
-footer{border-top:1px solid rgba(255,255,255,.05);padding:1rem 1.5rem;background:rgba(6,6,12,.98)}
-.ft{max-width:840px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem}
-.fs{font-size:.45rem;color:var(--t3)}.fs a{color:var(--g);text-decoration:none}
-.fl2{display:flex;gap:.6rem}.fl2 a{font-size:.5rem;color:var(--t2);text-decoration:none;transition:color .2s}
-.fl2 a:hover{color:var(--g)}
+footer{border-top:var(--border);padding:2rem;display:flex;justify-content:space-between;align-items:center;max-width:1200px;margin:0 auto}
+.fs{font-size:.75rem;color:var(--muted)}
+.fl{display:flex;gap:1.5rem}
+.fl a{font-size:.75rem;color:var(--muted);transition:color .2s}
+.fl a:hover{color:var(--g)}
 
 /* ══ RESPONSIVE ══ */
-@media(max-width:900px){.c4,.c3,.pw3,.sg,.b3,.sk4,.e3{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:600px){.c4,.c3,.pw3,.sg,.b3,.sk4,.e3,.c2{grid-template-columns:1fr}.nl{display:none}}
-@media(min-width:901px) and (max-width:1200px){.c4,.b3,.sk4,.e3{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:900px){
+.proof,.services,.stack,.process{grid-template-columns:repeat(2,1fr)}
+.system,.px,.testimonials{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+.proof,.services,.stack,.process,.system,.px,.testimonials{grid-template-columns:1fr}
+.nl{display:none}
+.hero,section{padding-left:1rem;padding-right:1rem}
+}
+
+/* ══ THREE.JS BACKGROUND ══ */
+#three{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:.4}
+.content{position:relative;z-index:1}
 </style>
 </head>
 <body>
 
-<!-- Three.js canvas — positioned behind everything -->
 <canvas id="three"></canvas>
-
 <div class="content">
 
 <!-- NAV -->
 <nav>
   <div class="logo">RASUL<span>.</span></div>
-  <div class="nl"><a href="#proof">Proof</a><a href="#stack">Stack</a><a href="#cases">Cases</a><a href="#process">Process</a><a href="#game">Game</a></div>
-  <a href="mailto:shaikhrasul02@gmail.com" class="nc">Contact</a>
+  <div class="nl"><a href="#proof">Proof</a><a href="#services">Services</a><a href="#cases">Cases</a><a href="#process">Process</a></div>
+  <a href="mailto:shaikhrasul02@gmail.com" class="nc">Work With Me →</a>
 </nav>
 
-<!-- ═══ HERO ═══ -->
+<!-- HERO -->
 <section class="hero">
   <div class="hi">
-    <svg class="emlem" viewBox="0 0 100 100"><polygon points="50,5 95,85 5,85" fill="none" stroke="#d4af37" stroke-width="2.5" opacity=".7"/><circle cx="50" cy="52" r="16" fill="none" stroke="#dc2626" stroke-width="2" opacity=".8"/><circle cx="50" cy="52" r="7" fill="#dc2626" opacity=".6"/><circle cx="50" cy="52" r="3" fill="#8b0000"/></svg>
-    <div class="bdg"><span class="dt"></span>Available — The Order Accepts Allies</div>
-    <h1 class="h1">AI GTM<br>Engineer<span style="color:var(--g)">.</span></h1>
-    <p class="hp">Revenue-first GTM automations for B2B scale-ups. I cut CAC, speed up <b>pipeline velocity</b>, and lift SQL conversion by building systems that remove the manual work GTM teams should never touch. <b>I am the System.</b></p>
+    <svg class="emlem" viewBox="0 0 100 100"><polygon points="50,5 95,85 5,85" fill="none" stroke="#d4af37" stroke-width="2.5" opacity=".7"/><circle cx="50" cy="52" r="16" fill="none" stroke="#dc2626" stroke-width="2" opacity=".8"/><circle cx="50" cy="52" r="7" fill="#dc2626" opacity=".6"/></svg>
+    <div class="bdg"><span class="dt"></span>Available for Projects</div>
+    <h1 class="h1">AI GTM<br><em>Engineering</em></h1>
+    <p class="hp">I build <b>revenue systems</b> that compound. Signal-driven GTM automation for B2B scale-ups — from enrichment to pipeline, without the noise.</p>
     <div class="acts">
       <a href="#cases" class="btn b1">See Results →</a>
-      <a href="#game" class="btn b2">Play Game</a>
-      <a href="https://linkedin.com/in/rasulshaikh" target="_blank" class="btn b3">LinkedIn</a>
+      <a href="https://linkedin.com/in/rasulshaikh" class="btn b2">LinkedIn</a>
     </div>
   </div>
 </section>
 
-<div class="sep"></div>
-
-<!-- ═══ PROOF ═══ -->
+<!-- PROOF -->
 <section id="proof">
-  <div class="si">
-    <div class="sl">Track Record</div>
-    <h2 class="st">3+ Years Building GTM Systems — $550K+ Revenue, $3.5M+ Pipeline</h2>
-    <div class="c4">
-      <div class="cd"><div class="cl">Revenue Generated</div><div class="cv cg">$550K+</div></div>
-      <div class="cd"><div class="cl">Pipeline Created</div><div class="cv cg">$3.5M+</div></div>
-      <div class="cd"><div class="cl">Efficiency Gains</div><div class="cv cg">40%</div></div>
-      <div class="cd"><div class="cl">Years Experience</div><div class="cv cg">3+</div></div>
+  <div class="sl">Track Record</div>
+  <div class="st">Outcomes That Move Numbers</div>
+  <div class="proof">
+    <div class="pd"><div class="cl">Revenue Generated</div><div class="cv">$550K+</div></div>
+    <div class="pd"><div class="cl">Pipeline Created</div><div class="cv">$3.5M+</div></div>
+    <div class="pd cr"><div class="cl">SQL Conversion</div><div class="cv">16→27%</div></div>
+    <div class="pd"><div class="cl">Efficiency Gains</div><div class="cv">40%</div></div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="sl">What I Build</div>
+  <div class="st">Outcome-Based GTM Systems</div>
+  <div class="services">
+    <div class="sv">
+      <div class="si">🎯</div>
+      <div class="sn">Signal-Driven Outbound</div>
+      <div class="st">Intent signals, tech reveals, hiring triggers. Every message armed with enriched data. Cold email that doesn't feel cold.</div>
     </div>
-    <div class="c3" style="background:rgba(220,38,38,.03);border:1px solid rgba(220,38,38,.08);padding:1rem;margin-top:.8rem">
-      <div style="text-align:center"><div style="font-size:.45rem;color:var(--t3);text-transform:uppercase;letter-spacing:.1em">Revenue Added</div><div style="font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--r)">+$180K ARR</div><div style="font-size:.6rem;color:var(--t3)">Under 6 months</div></div>
-      <div style="text-align:center"><div style="font-size:.45rem;color:var(--t3);text-transform:uppercase;letter-spacing:.1em">SQL Conversion</div><div style="font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--r)">16% → 27%</div><div style="font-size:.6rem;color:var(--t3)">Signal-driven stack</div></div>
-      <div style="text-align:center"><div style="font-size:.45rem;color:var(--t3);text-transform:uppercase;letter-spacing:.1em">Qualification</div><div style="font-family:'Orbitron',sans-serif;font-size:1.2rem;font-weight:700;color:var(--r)">20% Tighter</div><div style="font-size:.6rem;color:var(--t3)">Lead leak eliminated</div></div>
+    <div class="sv">
+      <div class="si">⚡</div>
+      <div class="sn">Automated Enrichment</div>
+      <div class="st">Clay-powered waterfall enrichment. 47+ data points per account. ICP scoring before CRM sync. No more manual research.</div>
+    </div>
+    <div class="sv">
+      <div class="si">🔄</div>
+      <div class="sn">Revenue Orchestration</div>
+      <div class="st">n8n workflows connecting Clay, HubSpot, Apollo, Instantly. Real-time routing. Alerts hit Slack in 60 seconds when it matters.</div>
+    </div>
+    <div class="sv">
+      <div class="si">📊</div>
+      <div class="sn">Pipeline Infrastructure</div>
+      <div class="st">Multi-domain setup. Warm-up protocols. SPF/DKIM/DMARC. Inbox rotation. Deliverability at 98%+ is the baseline, not the goal.</div>
+    </div>
+    <div class="sv">
+      <div class="si">🧠</div>
+      <div class="sn">ICP Self-Modeling</div>
+      <div class="st">Self-improving ICP models from intent data, tech stack, firmographics. The system gets smarter as more data flows through it.</div>
+    </div>
+    <div class="sv">
+      <div class="si">🚀</div>
+      <div class="sn">Rapid Market Testing</div>
+      <div class="st">Validate new ICPs without pulling sales resources. Ship campaigns in days, not weeks. Measure, iterate, scale.</div>
     </div>
   </div>
 </section>
 
-<div class="sep"></div>
+<!-- PHILOSOPHY -->
+<div class="philosophy" style="padding:4rem 2rem;max-width:1200px;margin:0 auto">
+  <div class="sl">The Approach</div>
+  <div class="st">Systems That Compound, Not Decay</div>
+  <div class="px">
+    <div class="ln">Extracting <em>the right signals</em> — not all signals. Only the ones correlated to actual buying intent.</div>
+    <div class="ln">Routing buyers <em>at the exact moment</em> — not too early, never too late. Precision timing.</div>
+    <div class="ln">Building <em>self-correcting loops</em> — adapting to performance data in real-time. No manual resets.</div>
+    <div class="ln">Outcome-based pricing — <em>aligned incentives</em>. You win when I win.</div>
+  </div>
+</div>
 
-<!-- ═══ POWER PILLARS ═══ -->
+<!-- SYSTEM -->
 <section>
-  <div class="si">
-    <div class="sl">Three Pillars</div>
-    <div class="pw3">
-      <div class="pw"><div class="pe">👁</div><div class="pn">All-Seeing Intel</div><div class="pt">Intent signals, tech stack reveals, hiring triggers — the system sees what others miss.</div></div>
-      <div class="pw"><div class="pe">&#9875</div><div class="pn">Precision Strikes</div><div class="pt">Every message armed with enriched data and surgical targeting.</div></div>
-      <div class="pw"><div class="pe">&#9923</div><div class="pn">Compounding Engine</div><div class="pt">Every workflow gets stronger with more data. The system compounds, never decays.</div></div>
-    </div>
+  <div class="sl">Architecture</div>
+  <div class="st">How The System Runs</div>
+  <div class="system">
+    <div class="sw"><div class="tt">MODULE I</div><div class="ch">Market Intelligence</div><div class="ct">ICP and TAM mapping. Accounts enriched with firmographics, intent, tech data. Scored on buying signals before CRM sync.</div></div>
+    <div class="sw"><div class="tt">MODULE II</div><div class="ch">Data Operations</div><div class="ct">CRM flows back for cleansing. Duplicates resolved, owners matched, missing fields refreshed. Auto-sync to HubSpot/Attio.</div></div>
+    <div class="sw"><div class="tt">MODULE III</div><div class="ch">Inbound Automation</div><div class="ct">Leads enriched, scored, routed instantly via Slack. High-intent triggers personalized outreach. Zero lag time.</div></div>
+    <div class="sw"><div class="tt">MODULE IV</div><div class="ch">Orchestration Layer</div><div class="ct">Clay handles enrichment, scoring, decisions. n8n manages cross-system timing. Clean signals, zero drift.</div></div>
   </div>
 </section>
 
-<div class="sep"></div>
-
-<!-- ═══ PHILOSOPHY ═══ -->
-<section class="alt">
-  <div class="si">
-    <div class="sl">The Codex</div>
-    <h2 class="st">I Don't Build Campaigns. I Build <span style="color:var(--g)">Systems That Build Campaigns.</span></h2>
-    <p style="color:var(--t2);font-size:.82rem;margin-bottom:1rem;line-height:1.7;max-width:580px">There's a difference between running outbound and having a machine that runs it. I don't write emails — I build the engine that writes, sends, tracks, learns, and self-optimizes. I don't clean your CRM — I build the loop that keeps it clean forever.</p>
-    <div class="sl" style="color:var(--r)">Core Philosophy</div>
-    <div class="ph">
-      <div class="ln">Extracting the <em>right signals</em> — not all signals. Only the ones correlated to actual buying intent.</div>
-      <div class="ln">Routing buyers <em>at the exact moment</em> they're ready — not too early, never too late.</div>
-      <div class="ln">Running outbound systems that <em>self-correct automatically</em> — adapting to performance data in real-time.</div>
-    </div>
-  </div>
-</section>
-
-<div class="sep"></div>
-
-<!-- ═══ SYSTEM ═══ -->
-<section>
-  <div class="si">
-    <div class="sl">Architecture</div>
-    <h2 class="st">How the System Runs</h2>
-    <p style="color:var(--t2);font-size:.82rem;margin-bottom:1.2rem;max-width:550px;line-height:1.7">Clay is the brain. ICP and TAM mapping, account enrichment with firmographics, intent signals, technographic data. Scored on real buying likelihood before touching the CRM. n8n orchestrates timing. Everything is connected.</p>
-    <div class="sg">
-      <div class="sw"><div class="tt">MODULE I</div><div class="ch">Market Intelligence</div><div class="ct">ICP and TAM mapping. Accounts enriched with firmographics, intent, tech data. Scored on buying signals before CRM sync.</div></div>
-      <div class="sw"><div class="tt">MODULE II</div><div class="ch">Data Ops & Hygiene</div><div class="ct">CRM flows back for cleansing. Duplicates resolved, owners matched, missing fields refreshed. Auto-sync to HubSpot/Attio.</div></div>
-      <div class="sw"><div class="tt">MODULE III</div><div class="ch">Inbound Automation</div><div class="ct">Inbound leads enriched, scored, routed instantly via Slack or CRM. High-intent triggers personalized outreach.</div></div>
-      <div class="sw"><div class="tt">MODULE IV</div><div class="ch">Orchestration Layer</div><div class="ct">Clay handles enrichment, scoring, decisions. n8n manages cross-system timing. Clean signals, zero drift.</div></div>
-    </div>
-  </div>
-</section>
-
-<div class="sep"></div>
-
-<!-- ═══ BUILD ═══ -->
-<section class="alt">
-  <div class="si">
-    <div class="sl">Arsenal</div>
-    <h2 class="st">What I Deliver</h2>
-    <div class="b3">
-      <div class="bi"><div class="bn">I</div><div class="bnm">Automated Research & Prioritization</div><div class="bt">Enrichment and scoring on autopilot. Reps focus on closing.</div></div>
-      <div class="bi"><div class="bn">II</div><div class="bnm">Stable Top-of-Funnel Flow</div><div class="bt">Predictable forecasting. Pipeline volatility eliminated.</div></div>
-      <div class="bi"><div class="bn">III</div><div class="bnm">AI Revenue Workflows</div><div class="bt">Signal-driven, outcome-obsessed. Real pipeline impact.</div></div>
-      <div class="bi"><div class="bn">IV</div><div class="bnm">Multi-Domain Outbound</div><div class="bt">Scale without deliverability risk. Protect domains.</div></div>
-      <div class="bi"><div class="bn">V</div><div class="bnm">Clean Data Engines</div><div class="bt">Reduce bounce risk. Protect sender reputation.</div></div>
-      <div class="bi"><div class="bn">VI</div><div class="bnm">Rapid Market Testing</div><div class="bt">Validate new ICPs without pulling sales. Ship fast.</div></div>
-    </div>
-  </div>
-</section>
-
-<div class="sep"></div>
-
-<!-- ═══ TECH STACK WITH ORIGINAL LOGOS ═══ -->
+<!-- STACK -->
 <section id="stack">
-  <div class="si">
-    <div class="sl">Full Tech Stack</div>
-    <div class="sk4">
-      <!-- Clay -->
-      <div class="sk">
-        <img src="https://clay.com/favicon.ico" alt="Clay" onerror="this.style.display='none'">
-        <div class="skn" style="margin-top:.2rem">Clay</div>
-        <div class="skd">Waterfall enrichment, scoring, ICP modeling</div><div class="skt">Intel Core</div>
-      </div>
-      <!-- n8n -->
-      <div class="sk">
-        <img src="https://cdn.simpleicons.org/n8n/EA1B55" alt="n8n" onerror="this.style.display='none'">
-        <div class="skn">n8n</div>
-        <div class="skd">API routing, multi-system orchestration</div><div class="skt">Automation</div>
-      </div>
-      <!-- HubSpot -->
-      <div class="sk">
-        <img src="https://cdn.simpleicons.org/hubspot/FF7A59" alt="HubSpot" onerror="this.style.display='none'">
-        <div class="skn">HubSpot</div>
-        <div class="skd">Pipeline, forecasting, attribution, workflows</div><div class="skt">CRM</div>
-      </div>
-      <!-- Smartlead -->
-      <div class="sk">
-        <img src="https://www.smartlead.ai/favicon.ico" alt="Smartlead" onerror="this.style.display='none'">
-        <div class="skn">Smartlead</div>
-        <div class="skd">Cold email at scale. Warm-up, inbox rotation</div><div class="skt">Outbound</div>
-      </div>
-      <!-- Instantly -->
-      <div class="sk">
-        <img src="https://www.instantly.ai/favicon.ico" alt="Instantly" onerror="this.style.display='none'">
-        <div class="skn">Instantly</div>
-        <div class="skd">AI personalization, B2B database, A/B testing</div><div class="skt">Outbound</div>
-      </div>
-      <!-- Attio -->
-      <div class="sk">
-        <img src="https://cdn.simpleicons.org/attio/080069" alt="Attio" onerror="this.style.display='none'">
-        <div class="skn">Attio</div>
-        <div class="skd">Flexible pipeline CRM, modular data models</div><div class="skt">CRM</div>
-      </div>
-      <!-- Slack -->
-      <div class="sk">
-        <img src="https://cdn.simpleicons.org/slack/4A154B" alt="Slack" onerror="this.style.display='none'">
-        <div class="skn">Slack</div>
-        <div class="skd">Real-time signal routing, high-intent alerts</div><div class="skt">Signals</div>
-      </div>
-      <!-- Google Sheets -->
-      <div class="sk">
-        <img src="https://cdn.simpleicons.org/googlesheets/34A853" alt="Sheets" onerror="this.style.display='none'">
-        <div class="skn">Google Sheets</div>
-        <div class="skd">Data staging, prospect lists, Clay I/O</div><div class="skt">Data</div>
-      </div>
-      <!-- Make -->
-      <div class="sk">
-        <img src="https://cdn.simpleicons.org/make/5b44999" alt="Make" onerror="this.style.display='none'">
-        <div class="skn">Make.com</div>
-        <div class="skd">Visual workflows, data transformation</div><div class="skt">Automation</div>
-      </div>
-      <!-- Apollo -->
-      <div class="sk">
-        <img src="https://cdn.simpleicons.org/apollo/0075ea" alt="Apollo" onerror="this.style.display='none'">
-        <div class="skn">Apollo</div>
-        <div class="skd">Verified contacts, intent signals, sequencing</div><div class="skt">Intel</div>
-      </div>
-      <!-- Phantombuster (only once now) -->
-      <div class="sk">
-        <img src="https://cdn.simpleicons.org/phantombuster/8c42f2" alt="Phantombuster" onerror="this.style.display='none'">
-        <div class="skn">Phantombuster</div>
-        <div class="skd">LinkedIn automation, data extraction</div><div class="skt">Intel</div>
-      </div>
-      <!-- Claude / LLMs -->
-      <div class="sk">
-        <img src="https://cdn.simpleicons.org/claude/c97032" alt="Claude" onerror="this.style.display='none'">
-        <div class="skn">Claude / LLMs</div>
-        <div class="skd">AI copy, intent analysis, scoring</div><div class="skt">AI Engine</div>
-      </div>
-      <!-- Claude Code -->
-      <div class="sk">
-        <img src="https://cdn.simpleicons.org/claude/c97032" alt="Claude Code" onerror="this.style.display='none'">
-        <div class="skn">Claude Code</div>
-        <div class="skd">Custom webhooks, API connectors, scripts</div><div class="skt">Engineering</div>
-      </div>
-      <!-- Antigravity -->
-      <div class="sk">
-        <div style="width:40px;height:40px;margin:0 auto .4rem;background:linear-gradient(135deg,#1a0a2e,#0a0a1a);border-radius:6px;display:flex;align-items:center;justify-content:center">
-          <span style="font-size:1rem">🌑</span>
-        </div>
-        <div class="skn">Antigravity</div>
-        <div class="skd">Market shifts, competitor moves detection</div><div class="skt">Intel</div>
-      </div>
-    </div>
+  <div class="sl">Tech Stack</div>
+  <div class="st">Tools In The System</div>
+  <div class="stack">
+    <div class="sk"><div style="font-size:1.5rem">🧠</div><div class="skn">Clay</div><div class="skd">Enrichment & Scoring</div></div>
+    <div class="sk"><div style="font-size:1.5rem">⚡</div><div class="skn">n8n</div><div class="skd">Workflow Orchestration</div></div>
+    <div class="sk"><div style="font-size:1.5rem">📈</div><div class="skn">HubSpot</div><div class="skd">CRM & Pipeline</div></div>
+    <div class="sk"><div style="font-size:1.5rem">✉️</div><div class="skn">Instantly</div><div class="skd">Cold Outbound</div></div>
+    <div class="sk"><div style="font-size:1.5rem">🎯</div><div class="skn">Apollo</div><div class="skd">Intent Data</div></div>
+    <div class="sk"><div style="font-size:1.5rem">💬</div><div class="skn">Attio</div><div class="skd">Flexible CRM</div></div>
+    <div class="sk"><div style="font-size:1.5rem">🔔</div><div class="skn">Slack</div><div class="skd">Signal Routing</div></div>
+    <div class="sk"><div style="font-size:1.5rem">🤖</div><div class="skn">Claude/LLMs</div><div class="skd">AI Copy & Analysis</div></div>
   </div>
 </section>
 
-<div class="sep"></div>
-
-<!-- ═══ CASE STUDIES ═══ -->
-<section id="cases" class="alt">
-  <div class="si">
-    <div class="sl">Case Studies</div>
+<!-- CASES -->
+<section id="cases">
+  <div class="sl">Case Studies</div>
+  <div class="st">Results In The Wild</div>
+  <div class="cases">
     <div class="cs">
-      <div class="csh"><span class="ccl">B2B SaaS — Series A</span><div class="cms"><div class="cm"><div class="cmv">+$180K</div><div class="cml">ARR</div></div><div class="cm"><div class="cmv">16→27%</div><div class="cml">SQL</div></div><div class="cm"><div class="cmv">6mo</div><div class="cml">Timeline</div></div></div></div>
-      <div class="cb">Built a <b>signal-driven AI GTM stack</b> from zero in Clay with 47 enrichment keys across 5,000+ accounts. Routed top-tier leads via Slack to AEs within 120 seconds of signal detection. <b>SQL conversion jumped from 16% to 27%</b>. Added $180K ARR with zero headcount increase across 12 sending domains.</div>
+      <div class="csh"><span class="ccl">B2B SaaS — Series A</span><div class="cms"><div class="cm"><div class="cmv">$180K</div><div class="cml">ARR Added</div></div><div class="cm"><div class="cmv">16→27%</div><div class="cml">SQL Conv.</div></div><div class="cm"><div class="cmv">6mo</div><div class="cml">Timeline</div></div></div></div>
+      <div class="cb">Built <b>signal-driven AI GTM stack</b> from zero in Clay. 47 enrichment keys across 5,000+ accounts. Routed top-tier leads via Slack within 120 seconds of signal detection. Added <b>$180K ARR</b> with zero headcount increase.</div>
     </div>
     <div class="cs">
       <div class="csh"><span class="ccl">AI Infrastructure — Pre-Seed</span><div class="cms"><div class="cm"><div class="cmv">$370K</div><div class="cml">Pipeline</div></div><div class="cm"><div class="cmv">40%</div><div class="cml">Efficiency</div></div><div class="cm"><div class="cmv">3mo</div><div class="cml">Timeline</div></div></div></div>
-      <div class="cb">Founder had raw leads — zero system. Deployed <b>Clay enrichment engine</b> sourcing and scoring from public data, intent signals, web activity. Automated workflows prioritized 470 accounts. <b>Founders reclaimed 15+ hours/week</b> lost to manual prospecting.</div>
+      <div class="cb">Founder had raw leads — zero system. Deployed <b>Clay enrichment engine</b> sourcing and scoring from public data. Automated workflows prioritized 470 accounts. <b>15+ hours/week reclaimed</b> from manual prospecting.</div>
     </div>
     <div class="cs">
-      <div class="csh"><span class="ccl">FinTech — Seed to Series A</span><div class="cms"><div class="cm"><div class="cmv">-20%</div><div class="cml">Leak</div></div><div class="cm"><div class="cmv">3×</div><div class="cml">Meetings</div></div><div class="cm"><div class="cmv">98%</div><div class="cml">Deliver</div></div></div></div>
-      <div class="cb">Built <b>multi-domain infrastructure</b> — 24 domains, 72 mailboxes, 14-day warm-up, AI-personalized with 17 enriched variables. <b>20% tighter qualification</b>, 35% fewer no-shows. Bounce below 2%, deliverability at 98%, meeting booking tripled.</div>
+      <div class="csh"><span class="ccl">FinTech — Seed to Series A</span><div class="cms"><div class="cm"><div class="cmv">-20%</div><div class="cml">Lead Leak</div></div><div class="cm"><div class="cmv">3×</div><div class="cml">Meetings</div></div><div class="cm"><div class="cmv">98%</div><div class="cml">Deliver.</div></div></div></div>
+      <div class="cb"><b>Multi-domain infrastructure</b> — 24 domains, 72 mailboxes, 14-day warm-up. AI-personalized with 17 enriched variables. <b>20% tighter qualification</b>, 35% fewer no-shows. Bounce below 2%.</div>
     </div>
   </div>
 </section>
 
-<div class="sep"></div>
-
-<!-- ═══ TESTIMONIALS ═══ -->
-<section>
-  <div class="si">
-    <div class="sl">What They Say</div>
-    <div class="c2">
-      <div class="tq"><p>"Rasul doesn't just execute — he diagnoses. Found a bottleneck we'd missed for 6 months and fixed it in a week."</p><div class="tm">SaaS Founder</div><div class="tr">Series A B2B</div></div>
-      <div class="tq"><p>"Pipeline grew 3× in two quarters when we went from guessing ICP to data-driven confidence with his Clay system."</p><div class="tm">AI Startup CEO</div><div class="tr">Pre-Seed Infrastructure</div></div>
-      <div class="tq"><p>"Outbound went from 2% reply to 18% in three weeks. Same market, same product — just better signals."</p><div class="tm">VP of Sales</div><div class="tr">FinTech</div></div>
-      <div class="tq"><p>"Everything measured, everything automated. The system doesn't reset — it compounds. Thinks like an engineer."</p><div class="tm">GTM Lead</div><div class="tr">B2B Scale-up</div></div>
-    </div>
-  </div>
-</section>
-
-<div class="sep"></div>
-
-<!-- ═══ ELITE OPS ═══ -->
-<section class="alt">
-  <div class="si">
-    <div class="sl">Advanced Ops</div>
-    <h2 class="st">What an Elite GTM Engineer Does</h2>
-    <div class="e3">
-      <div class="bi"><div class="bn">I</div><div class="bnm">Revenue Architecture</div><div class="bt">Design the full GTM data flow — first touch to closed-won.</div></div>
-      <div class="bi"><div class="bn">II</div><div class="bnm">ICP Self-Modeling</div><div class="bt">Self-improving ICP models from intent, tech, firmographics.</div></div>
-      <div class="bi"><div class="bn">III</div><div class="bnm">Deliverability Eng</div><div class="bt">SPF/DKIM/DMARC, warm-up, inbox rotation, bounce mgmt.</div></div>
-      <div class="bi"><div class="bn">IV</div><div class="bnm">Signal-Driven Routing</div><div class="bt">AE gets Slack alert in 60s when target visits pricing page.</div></div>
-      <div class="bi"><div class="bn">V</div><div class="bnm">Revenue Attribution</div><div class="bt">Dashboards showing exactly which campaigns produce pipeline.</div></div>
-      <div class="bi"><div class="bn">VI</div><div class="bnm">Competitive Intel</div><div class="bt">Monitor competitor moves, pricing, hiring signals.</div></div>
-    </div>
-  </div>
-</section>
-
-<div class="sep"></div>
-
-<!-- ═══ PROCESS ═══ -->
+<!-- PROCESS -->
 <section id="process">
-  <div class="si">
-    <div class="sl">Timeline</div>
-    <h2 class="st">Zero to Revenue in 30 Days</h2>
-    <div class="tl">
-      <div class="ts"><div class="tk">WEEK 1</div><div class="tn">Discovery & Architecture</div><div class="tp">Stack audit, ICP modeling, TAM mapping. Blueprint everything.</div><div class="dl"><span class="dt">ICP Model</span><span class="dt">TAM Map</span><span class="dt">Audit</span><span class="dt">Blueprint</span></div></div>
-      <div class="ts"><div class="tk">WEEK 2</div><div class="tn">Build & Integration</div><div class="tp">Clay tables, scoring, routing. n8n connecting everything. Testing.</div><div class="dl"><span class="dt">Clay</span><span class="dt">n8n Flows</span><span class="dt">CRM Sync</span><span class="dt">Alerts</span></div></div>
-      <div class="ts"><div class="tk">WEEK 3</div><div class="tn">Campaign Deploy</div><div class="tp">Outbound live. Inbound routing. Signals hit Slack. Meetings book.</div><div class="dl"><span class="dt">Outbound</span><span class="dt">Routing</span><span class="dt">Signals</span><span class="dt">Dashboard</span></div></div>
-      <div class="ts"><div class="tk">WEEK 4+</div><div class="tn">Optimize & Scale</div><div class="tp">ICP tightened. Sequences refined. Scale wins. Machine compounds.</div><div class="dl"><span class="dt">Reports</span><span class="dt">ICP Tuning</span><span class="dt">Playbook</span><span class="dt">Scale</span></div></div>
-    </div>
+  <div class="sl">Timeline</div>
+  <div class="st">Zero to Revenue in 30 Days</div>
+  <div class="process">
+    <div class="ps"><div class="pk">WEEK 1</div><div class="pn">Discovery & Architecture</div><div class="pp">Stack audit, ICP modeling, TAM mapping. Blueprint everything before touching code.</div><div class="pd2"><span>ICP Model</span><span>TAM Map</span><span>Audit</span></div></div>
+    <div class="ps"><div class="pk">WEEK 2</div><div class="pn">Build & Integration</div><div class="pp">Clay tables, scoring, routing. n8n connecting everything. Testing with real data.</div><div class="pd2"><span>Clay</span><span>n8n</span><span>CRM Sync</span></div></div>
+    <div class="ps"><div class="pk">WEEK 3</div><div class="pn">Campaign Deploy</div><div class="pp">Outbound live. Inbound routing. Signals hit Slack. First meetings book.</div><div class="pd2"><span>Outbound</span><span>Routing</span><span>Dashboard</span></div></div>
+    <div class="ps"><div class="pk">WEEK 4+</div><div class="pn">Optimize & Scale</div><div class="pp">ICP tightened. Sequences refined. Scale what works. Machine compounds.</div><div class="pd2"><span>Reports</span><span>Playbook</span><span>Scale</span></div></div>
   </div>
 </section>
 
-<div class="sep"></div>
-
-<!-- ═══ GAME ═══ -->
-<section id="game" class="alt">
-  <div class="gc">
-    <div class="sl" style="justify-content:center">Proving Grounds</div>
-    <h2 class="st" style="text-align:center">Destroy GTM Anomalies</h2>
-    <p style="color:var(--t2);font-size:.72rem;margin-bottom:.6rem">You're the ship. Every enemy is a threat to your pipeline. Destroy them all.</p>
-    <div class="gi"><span><kbd>← →</kbd> or <kbd>A D</kbd> Move</span><span><kbd>Space</kbd> Fire</span><span><kbd>P</kbd> Pause</span><span><kbd>R</kbd> Restart</span></div>
-    <div class="gh2"><span>SCORE: <span class="gsc" id="gs">0</span></span><span>LIVES: <span id="gl">◆◆◆</span></span><span>WAVE: <span id="gw">1</span></span><span>BEST: <span id="gb">0</span></span></div>
-    <canvas id="gc" width="700" height="380"></canvas>
-  </div>
-</section>
-
-<div class="sep"></div>
-
-<!-- ═══ QUOTE ═══ -->
-<section class="qs">
-  <blockquote>"I don't need luck.<br><em>I have systems.</em>"</blockquote>
-  <div class="au">— Rasul</div>
-  <div class="sl2"></div>
-  <p>Not a weekly reset. A compounding machine that gets stronger with every signal, every contact, every conversion.</p>
-</section>
-
-<div class="sep"></div>
-
-<!-- ═══ FAQ ═══ -->
+<!-- TESTIMONIALS -->
 <section>
-  <div class="si">
-    <div class="sl">Questions</div>
-    <div class="fi opn"><div class="fq" onclick="toggleFq(this)">What companies do you work with?<span class="fic">+</span></div><div class="fa2"><div class="fai">B2B scale-ups, Series A+. Pre-revenue can still benefit with lighter but powerful systems.</div></div></div>
-    <div class="fi"><div class="fq" onclick="toggleFq(this)">Do I provide the tools?<span class="fic">+</span></div><div class="fa2"><div class="fai">Yes — Clay, HubSpot etc. I build inside your infra. You own everything. No lock-in.</div></div></div>
-    <div class="fi"><div class="fq" onclick="toggleFq(this)">Timeline to first revenue?<span class="fic">+</span></div><div class="fa2"><div class="fai">First signals in Week 3. Full system at
+  <div class="sl">What They Say</div>
+  <div class="st">Direct Quotes</div>
+  <div class="testimonials">
+    <div class="tq"><p>"Rasul doesn't just execute — he diagnoses. Found a bottleneck we'd missed for 6 months and fixed it in a week."</p><div class="tm">SaaS Founder</div><div class="tr">Series A B2B</div></div>
+    <div class="tq"><p>"Pipeline grew 3× in two quarters when we went from guessing ICP to data-driven confidence with his Clay system."</p><div class="tm">AI Startup CEO</div><div class="tr">Pre-Seed Infrastructure</div></div>
+    <div class="tq"><p>"Outbound went from 2% reply to 18% in three weeks. Same market, same product — just better signals."</p><div class="tm">VP of Sales</div><div class="tr">FinTech</div></div>
+    <div class="tq"><p>"Everything measured, everything automated. The system doesn't reset — it compounds. Thinks like an engineer."</p><div class="tm">GTM Lead</div><div class="tr">B2B Scale-up</div></div>
+  </div>
+</section>
+
+<!-- GAME -->
+<div class="game">
+  <div class="sl">Proving Grounds</div>
+  <h2 class="st">Destroy GTM Anomalies</h2>
+  <div class="gi"><kbd>← →</kbd> Move &nbsp; <kbd>SPACE</kbd> Fire &nbsp; <kbd>R</kbd> Restart</div>
+  <div class="gh2"><span>SCORE: <span class="gsc" id="gs">0</span></span><span>LIVES: <span id="gl">◆◆◆</span></span><span>WAVE: <span id="gw">1</span></span></div>
+  <canvas id="gc" width="700" height="380"></canvas>
+</div>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="st">Ready to Build <span style="color:var(--r)">Your System</span>?</div>
+  <p>Let's talk about your GTM goals. No fluff, no agency pitches. Just engineering for revenue.</p>
+  <div class="ca">
+    <a href="mailto:shaikhrasul02@gmail.com" class="btn b1">Start a Project →</a>
+    <a href="https://linkedin.com/in/rasulshaikh" class="btn b2">View LinkedIn</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="fs">© 2024 RASUL — GTM Engineer</div>
+  <div class="fl">
+    <a href="mailto:shaikhrasul02@gmail.com">Email</a>
+    <a href="https://linkedin.com/in/rasulshaikh">LinkedIn</a>
+    <a href="https://github.com/rasulshaikh">GitHub</a>
+  </div>
+</footer>
+
+</div>
+
+<script>
+// Three.js background
+const canvas = document.getElementById('three');
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+const renderer = new THREE.WebGLRenderer({canvas, alpha:true});
+renderer.setSize(window.innerWidth, window.innerHeight);
+camera.position.z = 30;
+const geometry = new THREE.BufferGeometry();
+const count = 200;
+const positions = new Float32Array(count * 3);
+for(let i=0;i<count*3;i++) positions[i]=Math.random()*100-50;
+geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+const material = new THREE.PointsMaterial({color:0xd4af37, size:0.5});
+const stars = new THREE.Points(geometry, material);
+scene.add(stars);
+function animate(){
+  requestAnimationFrame(animate);
+  stars.rotation.y += 0.001;
+  renderer.render(scene, camera);
+}
+animate();
+
+// Game
+const gc = document.getElementById('gc');
+const ctx = gc.getContext('2d');
+let score=0, lives=3, wave=1, gameOver=false;
+const ship={x:350,y:350,w:30,h:20};
+const bullets=[];
+const enemies=[];
+const ecols=5, erows=3, esp=20;
+let eDX=1;
+function spawnEnemies(){
+  enemies.length=0;
+  for(let r=0;r<erows;r++) for(let c=0;c<ecols;c++) enemies.push({x:c*80+60,y:r*50+50,w:30,h:20});
+}
+spawnEnemies();
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowLeft'||e.key==='a') ship.x-=15;
+  if(e.key==='ArrowRight'||e.key==='d') ship.x+=15;
+  if(e.key===' '){ bullets.push({x:ship.x,y:ship.y-10}); e.preventDefault();}
+  if(e.key==='r'||e.key==='R'){score=0;lives=3;wave=1;gameOver=false;spawnEnemies();}
+});
+function update(){
+  if(gameOver) return;
+  bullets.forEach(b=>b.y-=8);
+  bullets.forEach((b,i)=>{if(b.y<0)bullets.splice(i,1)});
+  let edge=false;
+  enemies.forEach(e=>{e.x+=eDX;if(e.x>670||e.x<10)edge=true;});
+  if(edge){eDX*=-1;enemies.forEach(e=>e.y+=20);}
+  bullets.forEach((b,bi)=>{
+    enemies.forEach((e,ei)=>{
+      if(Math.abs(b.x-e.x)<25&&Math.abs(b.y-e.y)<20){bullets.splice(bi,1);enemies.splice(ei,1);score+=10;}
+    });
+  });
+  if(enemies.length===0){wave++;spawnEnemies();}
+  enemies.forEach(e=>{if(e.y>350)lives--;});
+  if(lives<=0)gameOver=true;
+  document.getElementById('gs').textContent=score;
+  document.getElementById('gl').textContent='◆'.repeat(Math.max(0,lives));
+  document.getElementById('gw').textContent=wave;
+}
+function draw(){
+  ctx.fillStyle='#040408';
+  ctx.fillRect(0,0,700,380);
+  ctx.fillStyle='#dc2626';
+  ctx.fillRect(ship.x-ship.w/2,ship.y,ship.w,ship.h);
+  ctx.fillStyle='#d4af37';
+  bullets.forEach(b=>{ctx.fillRect(b.x-2,b.y-8,4,12);});
+  ctx.fillStyle='#dc2626';
+  enemies.forEach(e=>{ctx.fillRect(e.x-e.w/2,e.y,e.w,e.h);});
+}
+function gameLoop(){update();draw();if(!gameOver)requestAnimationFrame(gameLoop);else{ctx.fillStyle='#dc2626';ctx.font='bold 36px Space Grotesk';ctx.textAlign='center';ctx.fillText('GAME OVER',350,190);ctx.font='18px Inter';ctx.fillStyle='#d4af37';ctx.fillText('Press R to restart',350,230);}}
+gameLoop();
+</script>
+</body>
+</html>
