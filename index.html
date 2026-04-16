@@ -36,8 +36,6 @@ nav.scrolled{background:rgba(6,6,16,.98);padding:.9rem 2rem;box-shadow:0 10px 50
 .hero{min-height:100vh;display:flex;align-items:center;padding:8rem 2rem 5rem;max-width:1200px;margin:0 auto;position:relative;z-index:1}
 .hi{max-width:800px;animation:fadeInUp 1s ease-out}
 @keyframes fadeInUp{from{opacity:0;transform:translateY(50px)}to{opacity:1;transform:translateY(0)}}
-.emlem{width:90px;height:90px;margin-bottom:2.5rem;transition:transform .6s}
-.emlem:hover{transform:rotate(360deg) scale(1.1)}
 .bdg{display:inline-flex;align-items:center;gap:.75rem;padding:.45rem 1.25rem;background:rgba(220,38,38,.12);border:1px solid rgba(220,38,38,.25);font-size:.75rem;color:var(--g);margin-bottom:2rem;border-radius:30px;backdrop-filter:blur(10px)}
 .bdg .dt{width:8px;height:8px;border-radius:50%;background:var(--r);animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
@@ -80,7 +78,6 @@ section{padding:7rem 2rem;max-width:1200px;margin:0 auto;position:relative;z-ind
 .sv:hover{transform:translateY(-12px) scale(1.03);border-color:rgba(220,38,38,.25);box-shadow:0 30px 80px rgba(0,0,0,.4)}
 .sv:hover::before{opacity:1}
 .sv.reveal{opacity:1;transform:translateY(0)}
-.sv .si{font-size:3rem;margin-bottom:1.75rem;display:block}
 .sv .sn{font-family:'Space Grotesk',sans-serif;font-size:1.35rem;font-weight:600;color:var(--text);margin-bottom:1rem}
 .sv .sd{font-size:.9rem;color:var(--muted);line-height:1.75;margin-bottom:1.5rem}
 .sv .deliverables{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1rem}
@@ -107,7 +104,6 @@ section{padding:7rem 2rem;max-width:1200px;margin:0 auto;position:relative;z-ind
 .sw:hover{border-color:rgba(212,175,55,.25);transform:translateY(-6px)}
 .sw.reveal{opacity:1;transform:translateY(0)}
 .sw .tt{font-size:.65rem;font-weight:600;letter-spacing:.15em;color:var(--g);text-transform:uppercase;margin-bottom:1rem}
-.sw .tt::before{content:'// ';color:var(--r)}
 .sw .ch{font-family:'Space Grotesk',sans-serif;font-size:1.15rem;font-weight:600;color:var(--text);margin-bottom:.75rem}
 .sw .ct{font-size:.9rem;color:var(--muted);line-height:1.75}
 
@@ -116,7 +112,6 @@ section{padding:7rem 2rem;max-width:1200px;margin:0 auto;position:relative;z-ind
 .sk{background:linear-gradient(135deg,var(--card),rgba(12,12,26,.3));border:1px solid var(--border);padding:1.75rem;text-align:center;border-radius:20px;opacity:0;transform:scale(0.9);transition:all .5s}
 .sk:hover{border-color:var(--g);transform:translateY(-8px) scale(1.05)}
 .sk.reveal{opacity:1;transform:scale(1)}
-.sk .ico{font-size:2rem;margin-bottom:1rem;display:block}
 .sk .skn{font-family:'Space Grotesk',sans-serif;font-size:.9rem;font-weight:600;color:var(--text);margin-bottom:.3rem}
 .sk .skd{font-size:.7rem;color:var(--muted);line-height:1.4}
 .sk .skt{font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--r);margin-top:.75rem;font-weight:600}
@@ -215,21 +210,15 @@ footer{border-top:var(--border);padding:2.5rem;display:flex;justify-content:spac
     <a href="#cases">Cases</a>
     <a href="#process">Process</a>
   </div>
-  <a href="mailto:shaikhrasul02@gmail.com" class="nc">Work With Me →</a>
+  <a href="mailto:shaikhrasul02@gmail.com" class="nc">Work With Me</a>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
   <div class="hi">
-    <svg class="emlem" viewBox="0 0 100 100" style="cursor:pointer">
-      <polygon points="50,5 95,85 5,85" fill="none" stroke="#d4af37" stroke-width="2.5" opacity=".85"/>
-      <circle cx="50" cy="50" r="25" fill="none" stroke="#dc2626" stroke-width="2.5" opacity=".95"/>
-      <circle cx="50" cy="50" r="12" fill="#dc2626" opacity=".75"/>
-      <circle cx="50" cy="50" r="5" fill="#d4af37"/>
-    </svg>
     <div class="bdg"><span class="dt"></span>Available for Projects — Taking 2 Clients/Month</div>
     <h1 class="h1">AI GTM<br><em>Engineering</em></h1>
-    <p class="hp">I build <b>revenue systems</b> that compound over time. Signal-driven GTM automation for B2B scale-ups — from ICP mapping to pipeline, without the noise.</p>
+    <p class="hp">I build <b>revenue systems</b> that compound over time. Signal-driven GTM automation for B2B scale-ups, from ICP mapping to pipeline, without the noise.</p>
     <div class="acts">
       <a href="#cases" class="btn b1">See Results <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h10m-5-5 5 5-5 5"/></svg></a>
       <a href="https://linkedin.com/in/rasulshaikh" class="btn b2">LinkedIn Profile</a>
@@ -244,7 +233,7 @@ footer{border-top:var(--border);padding:2.5rem;display:flex;justify-content:spac
   <div class="proof">
     <div class="pd" data-reveal><div class="cl">Revenue Generated</div><div class="cv">$550K+</div></div>
     <div class="pd" data-reveal><div class="cl">Pipeline Created</div><div class="cv">$3.5M+</div></div>
-    <div class="pd" data-reveal><div class="cl">SQL Conversion</div><div class="cv">16→27%</div></div>
+    <div class="pd" data-reveal><div class="cl">SQL Conversion</div><div class="cv">16 to 27%</div></div>
     <div class="pd" data-reveal><div class="cl">Efficiency Gains</div><div class="cv">40%</div></div>
   </div>
 </section>
@@ -255,7 +244,6 @@ footer{border-top:var(--border);padding:2.5rem;display:flex;justify-content:spac
   <div class="st" data-reveal>Outcome-Based GTM Systems</div>
   <div class="services-grid">
     <div class="sv" data-reveal>
-      <span class="si">🎯</span>
       <div class="sn">Signal-Driven Outbound</div>
       <div class="sd">End-to-end outbound systems that book meetings. ICP modeling, TAM mapping, email infrastructure, and personalized copywriting that converts.</div>
       <div class="deliverables">
@@ -269,7 +257,6 @@ footer{border-top:var(--border);padding:2.5rem;display:flex;justify-content:spac
       </div>
     </div>
     <div class="sv" data-reveal>
-      <span class="si">⚡</span>
       <div class="sn">Automated Enrichment</div>
       <div class="sd">Clay-powered waterfall enrichment. 47+ data points per account. ICP scoring before CRM sync. Data that compounds, not decays.</div>
       <div class="deliverables">
@@ -283,7 +270,6 @@ footer{border-top:var(--border);padding:2.5rem;display:flex;justify-content:spac
       </div>
     </div>
     <div class="sv" data-reveal>
-      <span class="si">🔄</span>
       <div class="sn">Revenue Orchestration</div>
       <div class="sd">n8n workflows connecting Clay, HubSpot, Apollo, Instantly. Real-time routing. Alerts hit Slack within 60 seconds of signal detection.</div>
       <div class="deliverables">
@@ -297,7 +283,6 @@ footer{border-top:var(--border);padding:2.5rem;display:flex;justify-content:spac
       </div>
     </div>
     <div class="sv" data-reveal>
-      <span class="si">📊</span>
       <div class="sn">Pipeline Infrastructure</div>
       <div class="sd">Multi-domain setup. Warm-up protocols. SPF/DKIM/DMARC. Inbox rotation. Deliverability at 98%+ is the baseline, not the goal.</div>
       <div class="deliverables">
@@ -310,7 +295,6 @@ footer{border-top:var(--border);padding:2.5rem;display:flex;justify-content:spac
       </div>
     </div>
     <div class="sv" data-reveal>
-      <span class="si">🧠</span>
       <div class="sn">ICP Self-Modeling</div>
       <div class="sd">Self-improving ICP models from intent data, tech stack, firmographics. The system gets smarter as more data flows through it.</div>
       <div class="deliverables">
@@ -322,7 +306,6 @@ footer{border-top:var(--border);padding:2.5rem;display:flex;justify-content:spac
       </div>
     </div>
     <div class="sv" data-reveal>
-      <span class="si">🚀</span>
       <div class="sn">Rapid Market Testing</div>
       <div class="sd">Validate new ICPs without pulling sales resources. Ship campaigns in days, not weeks. Measure, iterate, scale what works.</div>
       <div class="deliverables">
@@ -360,45 +343,45 @@ footer{border-top:var(--border);padding:2.5rem;display:flex;justify-content:spac
       <tbody>
         <tr>
           <td>Full GTM system, not just tools</td>
-          <td class="check">✓</td>
-          <td class="cross">✗</td>
-          <td class="partial">~</td>
-          <td class="partial">~</td>
+          <td class="check">Yes</td>
+          <td class="cross">No</td>
+          <td class="partial">Partial</td>
+          <td class="partial">Partial</td>
         </tr>
         <tr>
-          <td>Compounding data & learnings</td>
-          <td class="check">✓</td>
-          <td class="cross">✗</td>
-          <td class="cross">✗</td>
-          <td class="cross">✗</td>
+          <td>Compounding data and learnings</td>
+          <td class="check">Yes</td>
+          <td class="cross">No</td>
+          <td class="cross">No</td>
+          <td class="cross">No</td>
         </tr>
         <tr>
           <td>Custom workflows (not templates)</td>
-          <td class="check">✓</td>
-          <td class="partial">~</td>
-          <td class="partial">~</td>
-          <td class="check">✓</td>
+          <td class="check">Yes</td>
+          <td class="partial">Partial</td>
+          <td class="partial">Partial</td>
+          <td class="check">Yes</td>
         </tr>
         <tr>
           <td>Engineering-level execution</td>
-          <td class="check">✓</td>
-          <td class="check">✓</td>
-          <td class="cross">✗</td>
-          <td class="partial">~</td>
+          <td class="check">Yes</td>
+          <td class="check">Yes</td>
+          <td class="cross">No</td>
+          <td class="partial">Partial</td>
         </tr>
         <tr>
           <td>Outcome-based pricing</td>
-          <td class="check">✓</td>
-          <td class="cross">✗</td>
-          <td class="cross">✗</td>
-          <td class="partial">~</td>
+          <td class="check">Yes</td>
+          <td class="cross">No</td>
+          <td class="cross">No</td>
+          <td class="partial">Partial</td>
         </tr>
         <tr>
           <td>Self-correcting systems</td>
-          <td class="check">✓</td>
-          <td class="cross">✗</td>
-          <td class="cross">✗</td>
-          <td class="cross">✗</td>
+          <td class="check">Yes</td>
+          <td class="cross">No</td>
+          <td class="cross">No</td>
+          <td class="cross">No</td>
         </tr>
       </tbody>
     </table>
@@ -410,10 +393,10 @@ footer{border-top:var(--border);padding:2.5rem;display:flex;justify-content:spac
   <div class="sl" data-reveal>Architecture</div>
   <div class="st" data-reveal>How The System Runs</div>
   <div class="system">
-    <div class="sw" data-reveal><div class="tt">MODULE I</div><div class="ch">Market Intelligence</div><div class="ct">ICP and TAM mapping. Accounts enriched with firmographics, intent, tech data. Scored on buying signals before CRM sync.</div></div>
-    <div class="sw" data-reveal><div class="tt">MODULE II</div><div class="ch">Data Operations</div><div class="ct">CRM flows back for cleansing. Duplicates resolved, owners matched, missing fields refreshed. Auto-sync to HubSpot/Attio.</div></div>
-    <div class="sw" data-reveal><div class="tt">MODULE III</div><div class="ch">Inbound Automation</div><div class="ct">Leads enriched, scored, routed instantly via Slack. High-intent triggers personalized outreach. Zero lag time.</div></div>
-    <div class="sw" data-reveal><div class="tt">MODULE IV</div><div class="ch">Orchestration Layer</div><div class="ct">Clay handles enrichment, scoring, decisions. n8n manages cross-system timing. Clean signals, zero drift.</div></div>
+    <div class="sw" data-reveal><div class="tt">Module I</div><div class="ch">Market Intelligence</div><div class="ct">ICP and TAM mapping. Accounts enriched with firmographics, intent, tech data. Scored on buying signals before CRM sync.</div></div>
+    <div class="sw" data-reveal><div class="tt">Module II</div><div class="ch">Data Operations</div><div class="ct">CRM flows back for cleansing. Duplicates resolved, owners matched, missing fields refreshed. Auto-sync to HubSpot/Attio.</div></div>
+    <div class="sw" data-reveal><div class="tt">Module III</div><div class="ch">Inbound Automation</div><div class="ct">Leads enriched, scored, routed instantly via Slack. High-intent triggers personalized outreach. Zero lag time.</div></div>
+    <div class="sw" data-reveal><div class="tt">Module IV</div><div class="ch">Orchestration Layer</div><div class="ct">Clay handles enrichment, scoring, decisions. n8n manages cross-system timing. Clean signals, zero drift.</div></div>
   </div>
 </section>
 
@@ -422,14 +405,14 @@ footer{border-top:var(--border);padding:2.5rem;display:flex;justify-content:spac
   <div class="sl" data-reveal>Tech Stack</div>
   <div class="st" data-reveal>Tools In The System</div>
   <div class="stack">
-    <div class="sk" data-reveal><span class="ico">🧠</span><div class="skn">Clay</div><div class="skd">Enrichment & Scoring</div></div>
-    <div class="sk" data-reveal><span class="ico">⚡</span><div class="skn">n8n</div><div class="skd">Workflow Orchestration</div></div>
-    <div class="sk" data-reveal><span class="ico">📈</span><div class="skn">HubSpot</div><div class="skd">CRM & Pipeline</div></div>
-    <div class="sk" data-reveal><span class="ico">✉️</span><div class="skn">Instantly</div><div class="skd">Cold Outbound</div></div>
-    <div class="sk" data-reveal><span class="ico">🎯</span><div class="skn">Apollo</div><div class="skd">Intent Data</div></div>
-    <div class="sk" data-reveal><span class="ico">💬</span><div class="skn">Attio</div><div class="skd">Flexible CRM</div></div>
-    <div class="sk" data-reveal><span class="ico">🔔</span><div class="skn">Slack</div><div class="skd">Signal Routing</div></div>
-    <div class="sk" data-reveal><span class="ico">🤖</span><div class="skn">Claude Code</div><div class="skd">AI Engineering</div></div>
+    <div class="sk" data-reveal><div class="skn">Clay</div><div class="skd">Enrichment and Scoring</div><div class="skt">Core</div></div>
+    <div class="sk" data-reveal><div class="skn">n8n</div><div class="skd">Workflow Orchestration</div><div class="skt">Automation</div></div>
+    <div class="sk" data-reveal><div class="skn">HubSpot</div><div class="skd">CRM and Pipeline</div><div class="skt">CRM</div></div>
+    <div class="sk" data-reveal><div class="skn">Instantly</div><div class="skd">Cold Outbound</div><div class="skt">Outbound</div></div>
+    <div class="sk" data-reveal><div class="skn">Apollo</div><div class="skd">Intent Data</div><div class="skt">Intelligence</div></div>
+    <div class="sk" data-reveal><div class="skn">Attio</div><div class="skd">Flexible CRM</div><div class="skt">CRM</div></div>
+    <div class="sk" data-reveal><div class="skn">Slack</div><div class="skd">Signal Routing</div><div class="skt">Notifications</div></div>
+    <div class="sk" data-reveal><div class="skn">Claude Code</div><div class="skd">AI Engineering</div><div class="skt">AI</div></div>
   </div>
 </section>
 
@@ -439,16 +422,16 @@ footer{border-top:var(--border);padding:2.5rem;display:flex;justify-content:spac
   <div class="st" data-reveal>Results In The Wild</div>
   <div class="cases">
     <div class="cs" data-reveal>
-      <div class="csh"><span class="ccl">B2B SaaS — Series A</span><div class="cms"><div class="cm"><div class="cmv">$180K</div><div class="cml">ARR Added</div></div><div class="cm"><div class="cmv">16→27%</div><div class="cml">SQL Conv.</div></div><div class="cm"><div class="cmv">6mo</div><div class="cml">Timeline</div></div></div></div>
+      <div class="csh"><span class="ccl">B2B SaaS, Series A</span><div class="cms"><div class="cm"><div class="cmv">$180K</div><div class="cml">ARR Added</div></div><div class="cm"><div class="cmv">16 to 27%</div><div class="cml">SQL Conv</div></div><div class="cm"><div class="cmv">6mo</div><div class="cml">Timeline</div></div></div></div>
       <div class="cb">Built <b>signal-driven AI GTM stack</b> from zero in Clay. 47 enrichment keys across 5,000+ accounts. Routed top-tier leads via Slack within 120 seconds of signal detection. Added <b>$180K ARR</b> with zero headcount increase across 12 sending domains.</div>
     </div>
     <div class="cs" data-reveal>
-      <div class="csh"><span class="ccl">AI Infrastructure — Pre-Seed</span><div class="cms"><div class="cm"><div class="cmv">$370K</div><div class="cml">Pipeline</div></div><div class="cm"><div class="cmv">40%</div><div class="cml">Efficiency</div></div><div class="cm"><div class="cmv">3mo</div><div class="cml">Timeline</div></div></div></div>
-      <div class="cb">Founder had raw leads — zero system. Deployed <b>Clay enrichment engine</b> sourcing and scoring from public data, intent signals, web activity. Automated workflows prioritized 470 accounts. <b>15+ hours/week reclaimed</b> from manual prospecting.</div>
+      <div class="csh"><span class="ccl">AI Infrastructure, Pre-Seed</span><div class="cms"><div class="cm"><div class="cmv">$370K</div><div class="cml">Pipeline</div></div><div class="cm"><div class="cmv">40%</div><div class="cml">Efficiency</div></div><div class="cm"><div class="cmv">3mo</div><div class="cml">Timeline</div></div></div></div>
+      <div class="cb">Founder had raw leads, zero system. Deployed <b>Clay enrichment engine</b> sourcing and scoring from public data, intent signals, web activity. Automated workflows prioritized 470 accounts. <b>15+ hours/week reclaimed</b> from manual prospecting.</div>
     </div>
     <div class="cs" data-reveal>
-      <div class="csh"><span class="ccl">FinTech — Seed to Series A</span><div class="cms"><div class="cm"><div class="cmv">-20%</div><div class="cml">Lead Leak</div></div><div class="cm"><div class="cmv">3×</div><div class="cml">Meetings</div></div><div class="cm"><div class="cmv">98%</div><div class="cml">Deliver.</div></div></div></div>
-      <div class="cb"><b>Multi-domain infrastructure</b> — 24 domains, 72 mailboxes, 14-day warm-up, AI-personalized with 17 enriched variables. <b>20% tighter qualification</b>, 35% fewer no-shows. Bounce below 2%, deliverability at 98%.</div>
+      <div class="csh"><span class="ccl">FinTech, Seed to Series A</span><div class="cms"><div class="cm"><div class="cmv">-20%</div><div class="cml">Lead Leak</div></div><div class="cm"><div class="cmv">3x</div><div class="cml">Meetings</div></div><div class="cm"><div class="cmv">98%</div><div class="cml">Deliver</div></div></div></div>
+      <div class="cb"><b>Multi-domain infrastructure</b>: 24 domains, 72 mailboxes, 14-day warm-up, AI-personalized with 17 enriched variables. <b>20% tighter qualification</b>, 35% fewer no-shows. Bounce below 2%, deliverability at 98%.</div>
     </div>
   </div>
 </section>
@@ -458,10 +441,10 @@ footer{border-top:var(--border);padding:2.5rem;display:flex;justify-content:spac
   <div class="sl" data-reveal>Timeline</div>
   <div class="st" data-reveal>Zero to Revenue in 30 Days</div>
   <div class="process">
-    <div class="ps" data-reveal><div class="pk">WEEK 1</div><div class="pn">Discovery & Architecture</div><div class="pp">Stack audit, ICP modeling, TAM mapping. Blueprint everything before touching code.</div><div class="pd2"><span>ICP Model</span><span>TAM Map</span><span>Audit</span></div></div>
-    <div class="ps" data-reveal><div class="pk">WEEK 2</div><div class="pn">Build & Integration</div><div class="pp">Clay tables, scoring, routing. n8n connecting everything. Testing with real data.</div><div class="pd2"><span>Clay</span><span>n8n</span><span>CRM Sync</span></div></div>
-    <div class="ps" data-reveal><div class="pk">WEEK 3</div><div class="pn">Campaign Deploy</div><div class="pp">Outbound live. Inbound routing. Signals hit Slack. First meetings book.</div><div class="pd2"><span>Outbound</span><span>Routing</span><span>Dashboard</span></div></div>
-    <div class="ps" data-reveal><div class="pk">WEEK 4+</div><div class="pn">Optimize & Scale</div><div class="pp">ICP tightened. Sequences refined. Scale what works. Machine compounds.</div><div class="pd2"><span>Reports</span><span>Playbook</span><span>Scale</span></div></div>
+    <div class="ps" data-reveal><div class="pk">Week 1</div><div class="pn">Discovery and Architecture</div><div class="pp">Stack audit, ICP modeling, TAM mapping. Blueprint everything before touching code.</div><div class="pd2"><span>ICP Model</span><span>TAM Map</span><span>Audit</span></div></div>
+    <div class="ps" data-reveal><div class="pk">Week 2</div><div class="pn">Build and Integration</div><div class="pp">Clay tables, scoring, routing. n8n connecting everything. Testing with real data.</div><div class="pd2"><span>Clay</span><span>n8n</span><span>CRM Sync</span></div></div>
+    <div class="ps" data-reveal><div class="pk">Week 3</div><div class="pn">Campaign Deploy</div><div class="pp">Outbound live. Inbound routing. Signals hit Slack. First meetings book.</div><div class="pd2"><span>Outbound</span><span>Routing</span><span>Dashboard</span></div></div>
+    <div class="ps" data-reveal><div class="pk">Week 4 Plus</div><div class="pn">Optimize and Scale</div><div class="pp">ICP tightened. Sequences refined. Scale what works. Machine compounds.</div><div class="pd2"><span>Reports</span><span>Playbook</span><span>Scale</span></div></div>
   </div>
 </section>
 
@@ -470,10 +453,10 @@ footer{border-top:var(--border);padding:2.5rem;display:flex;justify-content:spac
   <div class="sl" data-reveal>What They Say</div>
   <div class="st" data-reveal>Direct Quotes</div>
   <div class="testimonials">
-    <div class="tq" data-reveal><p>"Rasul doesn't just execute — he diagnoses. Found a bottleneck we'd missed for 6 months and fixed it in a week."</p><div class="tm">SaaS Founder</div><div class="tr">Series A B2B</div></div>
-    <div class="tq" data-reveal><p>"Pipeline grew 3× in two quarters when we went from guessing ICP to data-driven confidence with his Clay system."</p><div class="tm">AI Startup CEO</div><div class="tr">Pre-Seed Infrastructure</div></div>
-    <div class="tq" data-reveal><p>"Outbound went from 2% reply to 18% in three weeks. Same market, same product — just better signals."</p><div class="tm">VP of Sales</div><div class="tr">FinTech</div></div>
-    <div class="tq" data-reveal><p>"Everything measured, everything automated. The system doesn't reset — it compounds. Thinks like an engineer."</p><div class="tm">GTM Lead</div><div class="tr">B2B Scale-up</div></div>
+    <div class="tq" data-reveal><p>Rasul does not just execute. He diagnoses. Found a bottleneck we had missed for 6 months and fixed it in a week.</p><div class="tm">SaaS Founder</div><div class="tr">Series A B2B</div></div>
+    <div class="tq" data-reveal><p>Pipeline grew 3x in two quarters when we went from guessing ICP to data-driven confidence with his Clay system.</p><div class="tm">AI Startup CEO</div><div class="tr">Pre-Seed Infrastructure</div></div>
+    <div class="tq" data-reveal><p>Outbound went from 2% reply to 18% in three weeks. Same market, same product. Just better signals.</p><div class="tm">VP of Sales</div><div class="tr">FinTech</div></div>
+    <div class="tq" data-reveal><p>Everything measured, everything automated. The system does not reset. It compounds. Thinks like an engineer.</p><div class="tm">GTM Lead</div><div class="tr">B2B Scale-up</div></div>
   </div>
 </section>
 
@@ -482,31 +465,31 @@ footer{border-top:var(--border);padding:2.5rem;display:flex;justify-content:spac
   <div class="sl" data-reveal>Proving Grounds</div>
   <h2 class="st" style="text-align:center">Destroy GTM Anomalies</h2>
   <div class="gi">
-    <span><kbd>← →</kbd> Move</span>
-    <span><kbd>SPACE</kbd> Fire</span>
+    <span><kbd>Left Right</kbd> Move</span>
+    <span><kbd>Space</kbd> Fire</span>
     <span><kbd>R</kbd> Restart</span>
   </div>
   <div class="gh2">
-    <span>SCORE: <span class="gsc" id="gs">0</span></span>
-    <span>LIVES: <span id="gl">◆◆◆</span></span>
-    <span>WAVE: <span id="gw">1</span></span>
+    <span>Score: <span class="gsc" id="gs">0</span></span>
+    <span>Lives: <span id="gl">Triple</span></span>
+    <span>Wave: <span id="gw">1</span></span>
   </div>
   <canvas id="gc" width="850" height="450"></canvas>
 </div>
 
 <!-- CTA -->
 <section class="cta">
-  <div class="st">Ready to Build <span style="color:var(--r)">Your System</span>?</div>
-  <p>Let's talk about your GTM goals. No fluff, no agency pitches. Just engineering for revenue. Taking 2 clients/month to ensure quality.</p>
+  <div class="st">Ready to Build <span style="color:var(--r)">Your System</span></div>
+  <p>Let us talk about your GTM goals. No fluff, no agency pitches. Just engineering for revenue. Taking 2 clients/month to ensure quality.</p>
   <div class="ca">
-    <a href="mailto:shaikhrasul02@gmail.com" class="btn b1">Start a Project →</a>
+    <a href="mailto:shaikhrasul02@gmail.com" class="btn b1">Start a Project</a>
     <a href="https://linkedin.com/in/rasulshaikh" class="btn b2">View LinkedIn</a>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <div class="fs">© 2026 RASUL — AI GTM Engineer</div>
+  <div class="fs">2026 RASUL, AI GTM Engineer</div>
   <div class="fl">
     <a href="mailto:shaikhrasul02@gmail.com">Email</a>
     <a href="https://linkedin.com/in/rasulshaikh">LinkedIn</a>
@@ -517,7 +500,7 @@ footer{border-top:var(--border);padding:2.5rem;display:flex;justify-content:spac
 </div>
 
 <script>
-// ══ 3D PARTICLE SCENE ══
+// 3D PARTICLE SCENE
 const canvas = document.getElementById('scene');
 const ctx = canvas.getContext('2d');
 let w, h, particles=[];
@@ -601,13 +584,13 @@ function animate(){
 }
 animate();
 
-// ══ NAV SCROLL ══
+// NAV SCROLL
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => {
   nav.classList.toggle('scrolled', window.scrollY > 50);
 });
 
-// ══ SCROLL REVEAL ══
+// SCROLL REVEAL
 const reveals = document.querySelectorAll('[data-reveal]');
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry, index) => {
@@ -620,7 +603,7 @@ const observer = new IntersectionObserver((entries) => {
 }, {threshold: 0.08});
 reveals.forEach(el => observer.observe(el));
 
-// ══ GAME ══
+// GAME
 const gc = document.getElementById('gc');
 const gctx = gc.getContext('2d');
 let score=0, lives=3, wave=1, gameOver=false;
@@ -660,7 +643,7 @@ function update(){
   enemies.forEach(e=>{if(e.y>400)lives--;});
   if(lives<=0)gameOver=true;
   document.getElementById('gs').textContent=score;
-  document.getElementById('gl').textContent='◆'.repeat(Math.max(0,lives));
+  document.getElementById('gl').textContent='***';
   document.getElementById('gw').textContent=wave;
 }
 
@@ -698,7 +681,7 @@ function gameLoop(){update();draw();if(!gameOver)requestAnimationFrame(gameLoop)
   gctx.fillStyle='#dc2626';gctx.font='bold 56px Space Grotesk';gctx.textAlign='center';
   gctx.fillText('GAME OVER',425,200);
   gctx.fillStyle='#d4af37';gctx.font='28px Inter';
-  gctx.fillText(`Final Score: ${score}`,425,260);
+  gctx.fillText('Final Score: ' + score,425,260);
   gctx.font='20px Inter';gctx.fillText('Press R to restart',425,310);
 }}
 gameLoop();
