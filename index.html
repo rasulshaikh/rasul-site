@@ -430,10 +430,6 @@ footer{border-top:var(--border);padding:2.5rem;display:flex;justify-content:spac
     <div class="sk" data-reveal><span class="ico">💬</span><div class="skn">Attio</div><div class="skd">Flexible CRM</div></div>
     <div class="sk" data-reveal><span class="ico">🔔</span><div class="skn">Slack</div><div class="skd">Signal Routing</div></div>
     <div class="sk" data-reveal><span class="ico">🤖</span><div class="skn">Claude Code</div><div class="skd">AI Engineering</div></div>
-    <div class="sk" data-reveal><span class="ico">💻</span><div class="skn">Claude/LLMs</div><div class="skd">AI Copy & Analysis</div></div>
-    <div class="sk" data-reveal><span class="ico">📊</span><div class="skn">Freckle</div><div class="skd">Time Tracking</div></div>
-    <div class="sk" data-reveal><span class="ico">⚖️</span><div class="skn">BitScale</div><div class="skd">Analytics</div></div>
-    <div class="sk" data-reveal><span class="ico">🔗</span><div class="skn">Smartlead</div><div class="skd">Email Warmup</div></div>
   </div>
 </section>
 
@@ -671,20 +667,16 @@ function update(){
 function draw(){
   gctx.fillStyle='#030306';
   gctx.fillRect(0,0,850,450);
-  // Stars background
   gctx.fillStyle='rgba(255,255,255,0.25)';
   for(let i=0;i<60;i++) gctx.fillRect(Math.random()*850,Math.random()*450,1,1);
-  // Ship
   gctx.fillStyle='#dc2626';
   gctx.beginPath();
   gctx.moveTo(ship.x,ship.y-ship.h/2);
   gctx.lineTo(ship.x-ship.w/2,ship.y+ship.h/2);
   gctx.lineTo(ship.x+ship.w/2,ship.y+ship.h/2);
   gctx.fill();
-  // Engine glow
   gctx.fillStyle='rgba(212,175,55,0.6)';
   gctx.fillRect(ship.x-6,ship.y+ship.h/2-5,12,8);
-  // Bullets
   gctx.fillStyle='#d4af37';
   bullets.forEach(b=>{
     gctx.fillRect(b.x-3,b.y-10,6,15);
@@ -692,7 +684,6 @@ function draw(){
     gctx.fillRect(b.x-1,b.y-6,2,8);
     gctx.fillStyle='#d4af37';
   });
-  // Enemies
   enemies.forEach(e=>{
     gctx.fillStyle='#dc2626';
     gctx.fillRect(e.x-e.w/2,e.y,e.w,e.h);
